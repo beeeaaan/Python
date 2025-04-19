@@ -1,0 +1,9 @@
+def solution(n):    
+    answer = 0
+    
+    for i in range(n + 1):
+        # 2로 나누어 나머지 없을 경우 짝수
+        if i % 2 == 0:
+            answer += i        
+    
+    return answer
