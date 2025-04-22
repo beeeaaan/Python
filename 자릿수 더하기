@@ -1,0 +1,8 @@
+def solution(n):
+    answer = 0
+    
+    while n > 0 :
+        answer += n % 10  # 1의 자리 구하기
+        n //= 10  # 나눈 나머지 구하기
+        
+    return answer
