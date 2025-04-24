@@ -1,0 +1,23 @@
+def solution(s):
+    answer = True    
+    stack = []
+    
+    for i in s:
+        # '('인 경우
+        if i == '(':
+            stack.append('(')        
+        # ')'인 경우
+        else:
+        	# 스택 비었는데 ')'가 들어온 경우
+            if stack == []:
+                return False            
+         	# 스택 안에 '('가 있고 ')'가 들어온 경우(올바른 괄호)
+            else:
+                stack.pop()
+    
+    #for문이 끝났는데 '(' 괄호가 남아있는 경우
+    if stack != []:
+        return False
+    
+    return True
+ 
