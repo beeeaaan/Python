@@ -1,0 +1,17 @@
+def solution(s):
+    answer = []
+    cnt = 0     
+    zero = 0
+    
+    # '1'이 남을 때까지
+    while True:
+        if s == '1':
+            break;
+            
+        zero += s.count("0")  # 문자열 0의 개수 세기
+        s = s.replace("0", '')  # 0 공백 변환
+        s = bin(len(s))[2:]  # 2진수 변환      
+        cnt += 1
+        
+    answer = [cnt, zero]    
+    return answer
