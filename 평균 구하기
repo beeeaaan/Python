@@ -1,0 +1,3 @@
+def solution(arr):
+    # 합 / 개수
+    return sum(arr) / len(arr)
