@@ -1,0 +1,10 @@
+def solution(n):
+    answer = n + 1
+    
+    while True:
+        # 2진수일 경우 bin 함수 사용(10진수를 2진수로 변환)
+        if bin(answer).count("1")==bin(n).count("1"):
+            break
+        else:
+            answer+=1
+    return answer
