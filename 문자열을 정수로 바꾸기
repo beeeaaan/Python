@@ -1,0 +1,5 @@
+def solution(s):
+    # int() : 문자열(String)을 정수(Integer)로 변환
+    answer = int(s)
+    
+    return answer
