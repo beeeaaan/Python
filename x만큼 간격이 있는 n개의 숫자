@@ -1,0 +1,8 @@
+def solution(x, n):
+    answer = []
+
+    # x부터 시작해 x씩 증가하는 숫자 n개 지니는 리스트
+    for i in range(1, n + 1):
+        answer.append(x * i)
+        
+    return answer
