@@ -1,0 +1,3 @@
+def solution(numbers):
+    # 합 / 개수
+    return sum(numbers) / len(numbers)
