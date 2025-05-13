@@ -1,0 +1,14 @@
+def solution(brown, yellow):    
+
+    # 절반까지 확인(세로 길이는 가로보다 작거나 같으므로)
+    for blen in range(1, brown // 2 + 1):       
+        # 가로, 세로 구하기
+        bwid = (brown - 2 * blen + 4) // 2
+        ywid, ylen = bwid - 2, blen - 2
+        
+        # 노란색 == 가로(yellow) x 세로(yellow) 이면서 
+        # yellow + brow == 가로(brown) x 세로(brown) 일 경우
+        if yellow == ywid * ylen and yellow + brown == bwid * blen:
+            
+            # 카펫 크기 = 가로(brown), 세로(brown)
+            return [bwid, blen]
