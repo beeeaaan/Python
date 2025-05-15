@@ -1,0 +1,6 @@
+def solution(a, b):
+    # 모든 정수의 합
+    if a < b :
+        return sum(list(range(a, b + 1)))
+    else:
+        return sum(list(range(b, a+1)))
