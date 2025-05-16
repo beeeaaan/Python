@@ -1,0 +1,11 @@
+def solution(s):
+    answer = True   
+    s = s.lower()    
+    p = s.count('p')
+    y = s.count('y')
+    
+    # 'p', 'y' 모두 하나도 없는 경우
+    if(p != y):
+        answer = False
+
+    return answer
