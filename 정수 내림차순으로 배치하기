@@ -1,0 +1,6 @@
+def solution(n):
+    answer = list(str(int(n)))
+    # reverse로 내림차순 배치
+    answer.sort(reverse = True)
+    
+    return int("".join(answer))
