@@ -1,0 +1,22 @@
+def solution(k, tangerine):
+    answer = 0
+    x = {}
+    
+    # 사이즈별로 넣기
+    for i in tangerine:
+        if i in x:
+            x[i] += 1
+        else:
+            x[i] = 1
+            
+    x = dict(sorted(x.items(), key=lambda x: x[1], reverse=True))
+    
+    for i in x:
+        # 다 찼을 경우
+        if k <= 0:
+            return answer
+        
+        k -= x[i]
+        answer += 1
+        
+    return answer
