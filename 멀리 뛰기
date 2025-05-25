@@ -1,0 +1,10 @@
+def solution(n):
+    answer = 0
+    x, y = 0,1
+    
+    # 피보나치 수열 활용
+    for i in range(n) :
+        x, y = y, x + y
+    
+    answer = y % 1234567
+    return answer
