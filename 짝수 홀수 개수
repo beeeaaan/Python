@@ -1,0 +1,8 @@
+def solution(num_list):
+    answer = [0, 0]
+    
+    # 짝수일 경우 0번째 +1, 홀수일 경우 1번째 +1
+    for n in num_list:
+        answer[n % 2] += 1
+
+    return answer
