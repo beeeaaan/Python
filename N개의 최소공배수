@@ -1,0 +1,10 @@
+import math
+
+def solution(arr):
+    answer = arr[0]
+    
+    for n in arr:
+        # gcd : 최대공약수
+        answer = (n * answer) // math.gcd(n, answer)
+        
+    return answer
