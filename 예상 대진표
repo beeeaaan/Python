@@ -1,0 +1,11 @@
+def solution(n,a,b):
+    answer = 0
+
+    # 각 참가자들 번호 같지 않을 경우(같으면 이전 라운드 서로 시합 진행)
+    while a != b:
+        # +1 : 다음 라운드 참가자 번호
+        a = (a + 1) // 2
+        b = (b + 1) // 2
+        answer = answer + 1
+
+    return answer
