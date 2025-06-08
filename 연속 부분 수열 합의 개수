@@ -1,0 +1,10 @@
+def solution(elements):
+    sum_list = elements * 2
+    answer = set()
+    
+    # 원형 수열 : 처음과 끝이 연결되어 끊기는 부분이 없는 연속 수열
+    for i in range(len(elements)):
+        for j in range(len(elements)):
+            answer.add(sum(sum_list[j : j + i + 1]))
+
+    return len(answer)
