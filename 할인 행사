@@ -1,0 +1,13 @@
+from collections import Counter
+
+def solution(want, number, discount):
+    saleDay = 0
+    wantNum = dict(zip(want, number))
+    
+    # 10일 동안 회원 자격 부여
+    for i in range(len(discount) - 10 + 1):
+        # 10일 연속일 경우 가입
+        if wantNum == Counter(discount[i : i + 10]):
+            saleDay += 1
+
+    return saleDay
