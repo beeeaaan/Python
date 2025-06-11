@@ -1,0 +1,3 @@
+def solution(message):
+    # 가로 2cm
+    return len(message) * 2
