@@ -1,0 +1,3 @@
+def solution(n, t):
+    # x << y : x의 비트를 y번 왼쪽으로 이동
+    return n << t
