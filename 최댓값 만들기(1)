@@ -1,0 +1,4 @@
+def solution(numbers):
+    numbers.sort()
+    # 뒤 숫자 두 개 곱하기
+    return numbers[-2] * numbers[-1]
