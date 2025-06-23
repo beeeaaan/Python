@@ -1,0 +1,9 @@
+def solution(citations):    
+    citations.sort(reverse = True)
+    
+    for i in range(len(citations)):
+        # 인용된 논문이 없을 경우
+        if i >= citations[i]:
+            return i
+        
+    return len(citations)
