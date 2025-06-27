@@ -1,0 +1,9 @@
+def solution(array, height):
+    answer = 0
+    
+    for x in array:        
+        # 머쓱이보다 클 경우
+        if x > height:
+            answer += 1
+            
+    return answer
