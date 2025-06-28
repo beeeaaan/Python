@@ -1,0 +1,17 @@
+def solution(clothes):
+    # 옷 종류별로 구분
+    closet = {} 
+    
+    for name, kind in clothes:
+        if kind in closet.keys():
+            closet[kind] += [name]
+        else:
+            closet[kind] = [name]
+            
+    answer = 1
+    
+    # A 종류 n개, B 종류 m개일 때 가능한 모든 경우의 수(n+1)(m+1)     
+    for _, value in closet.items():
+        answer *= (len(value) + 1)
+        
+    return answer -1
