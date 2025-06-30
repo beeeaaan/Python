@@ -1,0 +1,20 @@
+def solution(progresses, speeds):
+    answer = []
+    
+    while progresses :
+        cnt = 0
+        
+        # 작업 리스트 남아 있고 맨 앞 작업 진도 100인 경우
+        while progresses and progresses[0] >= 100:
+            cnt += 1
+            progresses.pop(0)
+            speeds.pop(0)
+
+        # 작업 리스트 진도 증가
+        progresses = [progresses[i] + speeds[i] for i in range(len(progresses))]
+
+        # 오늘 기능 배포된 경우
+        if cnt:
+            answer.append(cnt)
+    
+    return answer
