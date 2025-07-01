@@ -1,0 +1,8 @@
+def solution(sides):
+    sides.sort()
+    
+    # 가장 긴 변의 길이가 다른 두 변의 길이의 합보다 작을 경우
+    if sides[0] + sides[1] > sides[2]:
+        return 1
+    else:
+        return 2
