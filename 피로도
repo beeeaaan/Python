@@ -1,0 +1,17 @@
+from itertools import permutations
+
+def solution(k, dungeons):
+    answer = 0
+    
+    # permutations(순열) 통해 던전 탐색의 모든 경우의 수 구하기
+    for order in permutations(dungeons, len(dungeons)):
+        tmp = k; fatigue = 0
+        
+        for i in range(len(dungeons)):
+            # 최소 필요 피로도가 남은 피로도보다 작거나 같을 경우
+            if order[i][0] <= tmp :
+                tmp -= order[i][1]
+                fatigue += 1
+        answer = max(answer, fatigue)
+        
+    return answer
