@@ -1,0 +1,3 @@
+def solution(slice, n):
+    # 최소 한 조각 이상
+    return ((n - 1) // slice) + 1
