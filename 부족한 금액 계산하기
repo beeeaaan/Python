@@ -1,0 +1,9 @@
+def solution(price, money, count):
+    answer = 0
+    
+    # N번째 이용하면 이용료 N배 상승
+    for i in range(1, count + 1):
+        answer += price * i
+
+    # 금액 부족할 경우 부족한 금액, 부족하지 않을 경우 0
+    return answer - money if answer > money else 0
