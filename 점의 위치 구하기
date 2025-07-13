@@ -1,0 +1,15 @@
+def solution(dot):  
+    # x, y 모두 양수일 경우
+    if (dot[0] > 0) & (dot[1] > 0):
+        answer = 1    
+    # x 음수, y 양수일 경우
+    elif (dot[0] < 0) & (dot[1] > 0):
+        answer = 2  
+    # x, y 모두 음수일 경우
+    elif (dot[0] < 0) & (dot[1] < 0):
+        answer = 3
+    # x 양수, y 음수일 경우
+    else:
+        answer = 4 
+        
+    return answer
