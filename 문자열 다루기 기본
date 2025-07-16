@@ -1,0 +1,3 @@
+def solution(s):
+    # isdigit : 문자열 숫자로만 이루어져 있는지 확인
+    return s.isdigit() and len(s) in [4, 6]
