@@ -1,0 +1,20 @@
+from collections import Counter 
+
+def solution(topping):
+    answer = 0
+    old_Bro = Counter(topping) # 형(철수)
+    young_Bro = set()  # 동생
+        
+    for i in topping:
+        old_Bro[i] -= 1
+        # 토핑 하나씩 동생이 가지고 가기
+        young_Bro.add(i)
+        
+        # 형이 더이상 해당 토핑을 가지고 있지 않을 경우
+        if old_Bro[i] == 0:
+            old_Bro.pop(i)
+            # 두 형제의 토핑 갯수가 같을 경우 1
+        if len(old_Bro) == len(young_Bro):
+            answer += 1 
+            
+    return answer
