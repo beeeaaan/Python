@@ -1,0 +1,40 @@
+from collections import deque
+
+def solution(graph):
+    row = len(graph)
+    column = len(graph[0])
+    
+    def BFS(a, b):
+        queue = deque()
+        queue.append([a, b])
+        
+        while queue:
+            # x(행), y(열) 좌표
+            x, y = queue.popleft()
+            # 방향 벡터(상,하,좌,우) 탐색
+            dx = [1, -1, 0, 0]
+            dy = [0, 0, -1, 1]
+            
+            for i in range(4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                
+                # 범위를 벗어날 경우
+                if nx < 0 or ny < 0 or nx >= row or ny >= column: 
+                    continue
+                # 벽일 경우
+                if graph[x][y] == 0: 
+                    continue
+                # 방문한 적 없을 경우
+                if graph[nx][ny] == 1:
+                    graph[nx][ny] = graph[x][y] + 1
+                    queue.append([nx,ny])
+        
+        # 상대 진영 방문한 적 없을 경우
+        if graph[row - 1][column - 1] == 1: return -1
+        # 상대 진영에 방문한 적 있을 경우
+        else: return graph[row - 1][column - 1]
+    
+    answer = BFS(0, 0)
+    
+    return answer
