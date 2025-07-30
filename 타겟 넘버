@@ -1,0 +1,19 @@
+def solution(numbers, target):
+    answer = 0  # 타겟 넘버 만드는 방법 수
+    result = [0]  # 타겟과 비교할 수 넣을 배열
+    
+    for i in numbers:
+        tmp = []  # 임시 저장 배열
+        
+        for j in result:
+            tmp.append(j + i)
+            tmp.append(j - i)
+        
+        result = tmp
+    
+    for i in result:
+        # 타겟과 result[i]값 같을 경우
+        if i == target:
+            answer += 1
+    
+    return answer
