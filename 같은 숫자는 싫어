@@ -1,0 +1,9 @@
+def solution(arr):
+    answer = []
+    
+    for i in arr:
+        # 연속적으로 나타나는 숫자 하나만 남기고 전부 제거
+        if answer[-1:] == [i]: continue
+        answer.append(i)
+        
+    return answer
