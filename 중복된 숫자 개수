@@ -1,0 +1,3 @@
+def solution(array, n):
+    # count() : 해당 갯수 반환
+    return array.count(n)
