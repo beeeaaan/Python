@@ -1,0 +1,43 @@
+def solution(str1, str2):
+    str1 = str1.upper()
+    str2 = str2.upper()    
+    A, B = [], []  # 다중집합
+    
+    for i in range(len(str1) - 1):
+        str = str1[i:i+2] # 두글자씩 끊기
+        # 영문자로 된 글자일 경우 다중집합
+        if str.isalpha():
+            A.append(str)
+            
+    for i in range(len(str2) - 1):
+        str = str2[i : i + 2]
+        # 영문자로 된 글자일 경우
+        if str.isalpha():
+            B.append(str)            
+    # 자카드 유사도 구하기
+    if len(A) == 0 and len(B) == 0:
+        j = 1
+    else:
+        # 다중합집합
+        A_temp = A.copy()
+        A_result = A.copy()
+        
+        for i in B:
+            # B에만 존재할 경우 합집합
+            if i not in A_temp:
+                A_result.append(i) 
+            # 공통으로 존재할 경우 제거
+            else:
+                A_temp.remove(i)
+                
+        # 다중교집합
+        result = []
+        
+        for i in B:
+            if i in A:
+                A.remove(i)
+                result.append(i)
+                
+        j = len(result) / len(A_result) # 자카드 유사도 = 교집합/합집합
+        
+    return (int(j * 65536))
