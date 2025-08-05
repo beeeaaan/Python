@@ -1,0 +1,9 @@
+def solution(t, p):
+    answer = 0
+
+    for i in range(len(t) - len(p) + 1):
+        # p보다 작거나 같은 경우
+        if int(p) >= int(t[i : i + len(p)]):
+            answer += 1
+
+    return answer
