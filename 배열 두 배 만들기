@@ -1,0 +1,3 @@
+def solution(numbers):
+    # 곱해서 두배로 만들기
+    return [num * 2 for num in numbers]
