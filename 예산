@@ -1,0 +1,11 @@
+def solution(d, budget):
+    answer = 0
+    
+    for i in sorted(d):
+        budget -= i
+        # 신청한 금액만큼 모두 지원
+        if budget < 0: 
+            break
+        answer += 1
+        
+    return answer
