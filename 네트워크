@@ -1,0 +1,18 @@
+def solution(n, computers):
+    visit = [0] * n
+    answer = 0
+    
+    def dfs(pc):
+        visit[pc] = 1
+        # 해당 컴퓨터에 연결된 컴퓨터 탐색
+        for idx, c in enumerate(computers[pc]):
+            if c and visit[idx] == 0:
+                dfs(idx)
+                
+    for pc in range(n):
+        # 방문하지 않은 경우
+        if visit[pc] == 0:
+            dfs(pc)
+            answer+=1
+            
+    return answer
