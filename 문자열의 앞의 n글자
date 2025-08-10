@@ -1,0 +1,3 @@
+def solution(my_string, n):
+    # 처음부터 n까지
+    return my_string[:n]
