@@ -1,0 +1,39 @@
+def solution(dirs):
+    answer = 0    
+    dirMap = [[0] * 21 for _ in range(21)]    
+    x, y = 10, 10
+    
+    for d in dirs:
+        # U: 위쪽으로 한 칸 가기
+        if d == 'U':
+            if x - 2 < 0: continue
+            if dirMap[x-1][y] == 0:
+                dirMap[x-1][y] = 1
+                answer += 1
+            x -= 2
+            
+        # D: 아래쪽으로 한 칸 가기
+        elif d == 'D':
+            if x + 2 > 20: continue
+            if dirMap[x+1][y] == 0:
+                dirMap[x+1][y] = 1
+                answer += 1
+            x += 2
+            
+        # R: 오른쪽으로 한 칸 가기
+        elif d == 'R':
+            if y + 2 > 20: continue
+            if dirMap[x][y+1] == 0:
+                dirMap[x][y+1] = 1
+                answer += 1
+            y += 2
+            
+        # L: 왼쪽으로 한 칸 가기
+        elif d == 'L':
+            if y - 2 < 0: continue           
+            if dirMap[x][y-1] == 0:
+                dirMap[x][y-1] = 1
+                answer += 1
+            y -= 2
+    
+    return answer
