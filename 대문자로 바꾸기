@@ -1,0 +1,5 @@
+def solution(myString):
+    # upper() : 문자열의 모든 문자 대문자로 변환
+    answer = myString.upper()
+    
+    return answer
