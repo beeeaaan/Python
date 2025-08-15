@@ -1,0 +1,10 @@
+def solution(n):
+    answer = ''
+
+    while n > 0:
+        # 몫, 나머지 반환
+        n, result = divmod(n, 3)
+        answer += str(result)
+        
+    # 10진법 변환
+    return int(answer, 3)
