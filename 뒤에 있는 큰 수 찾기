@@ -1,0 +1,11 @@
+def solution(numbers):
+    stack = []
+    answer = [-1] * len(numbers)
+
+    for i in range(len(numbers)):
+        # stack 마지막 인덱스의 값과 umbers[i] 값과 비교하여 뒷 큰 수가 없을 경우
+            while stack and numbers[stack[-1]] < numbers[i]:
+                answer[stack.pop()] = numbers[i]
+            stack.append(i)
+    
+    return answer
