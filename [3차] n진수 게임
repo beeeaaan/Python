@@ -1,0 +1,27 @@
+# n진수 변환 함수
+def convert(number, n):
+    if number == 0:
+        return '0'
+    num = "0123456789ABCDEF"
+    result = ""
+    
+    while number > 0:
+        number, mod = divmod(number, n)
+        result += num[mod]
+    return result[::-1]
+
+def solution(n, t, m, p):
+    answer = ''
+    game = ''
+    cur = p - 1
+
+    for num in range(t * m):  # 최대 숫자
+        game += convert(num, n)
+    while 1:
+        # 숫자 확인
+        if len(answer) == t:
+            break
+        answer += game[cur]
+        cur += m
+        
+    return answer
