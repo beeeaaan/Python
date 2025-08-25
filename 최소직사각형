@@ -1,0 +1,10 @@
+def solution(sizes):
+    w = []  # 가로
+    h = []  # 세로
+    
+    for s in sizes:
+        w.append(max(s))  # 최대값
+        h.append(min(s))  # 최소값
+
+    # w 최대값 * h 최대값
+    return max(w) * max(h)
