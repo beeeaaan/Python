@@ -1,0 +1,14 @@
+def solution(price):
+    answer = price
+    
+    # 50만원  이상 사면 20% 할인
+    if price >= 500000:
+        answer = price - (0.2 * price)
+    # 30만원 이상 사면 10% 할인
+    elif price >= 300000:
+        answer = price - (0.1 * price)
+    # 10만원 이상 사면 5% 할인
+    elif price >= 100000:
+        answer = price - (0.05 * price)
+        
+    return int(answer)
