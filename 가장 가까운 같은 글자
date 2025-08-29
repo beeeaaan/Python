@@ -1,0 +1,10 @@
+def solution(s):
+    x = {}
+    answer = []
+    
+    for index, letter in enumerate(s):
+        # 같은 글자가 없는 경우
+        answer.append(index - x[letter] if letter in x else -1)
+        x[letter] = index
+        
+    return answer
