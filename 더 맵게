@@ -1,0 +1,17 @@
+import heapq
+
+def solution(scoville, K):
+    answer = 0
+    heapq.heapify(scoville)
+    
+    # 모든 음식 스코빌 지수 K 이상으로 만들기
+    while scoville[0] < K:
+        new_Scoville = heapq.heappop(scoville) + (heapq.heappop(scoville) * 2)
+        heapq.heappush(scoville,new_Scoville)
+        answer += 1
+        
+        # 모든 음식 스코빌 지수 K 이상으로 만들 수 없는 경우
+        if scoville[0] < K and len(scoville) == 1:
+            return -1
+
+    return answer
