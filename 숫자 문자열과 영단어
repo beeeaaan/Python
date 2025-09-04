@@ -1,0 +1,8 @@
+def solution(s):
+    num = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    
+    # 영단어 나올 경우 숫자로 바꾸기
+    for i, a in enumerate(num) :
+        s = s.replace(a, str(i))
+    
+    return int(s)
