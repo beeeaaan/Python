@@ -1,0 +1,7 @@
+def solution(hp):
+    i = hp // 5  # 장군개미
+    j = (hp - (5 * i)) // 3  # 병정개미
+    k = (hp - ((5 * i) + (3 * j))) // 1  # 일개미
+    answer = i + j + k 
+    
+    return answer
