@@ -1,0 +1,22 @@
+def solution(msg):
+    dic = {chr(i+65):i+1 for i in range(26)}    
+    answer = []
+    
+    while True:
+        # 해당 글자가 사전에 있는 경우
+        if msg in dic:
+            answer.append(dic[msg])
+            break
+            
+        for i in range(1, len(msg)):
+            # 다음 글자 추가 한 글자 사전에 없는 경우
+            if msg[:i + 1] not in dic:
+                # 이전 글자 번호 출력
+                answer.append(dic[msg[:i]])
+                # 사전에 추가
+                dic[msg[:i + 1]] = len(dic) + 1
+                # 다음 글자부터 확인하기
+                msg = msg[i:]
+                break
+                
+    return answer
