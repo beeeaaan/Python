@@ -1,0 +1,15 @@
+def solution(rsp):
+    answer = ''
+    
+    for s in rsp:
+        # 바위
+        if (s == '0'):
+            answer += '5'
+        # 가위
+        elif (s == '2'):
+            answer += '0'
+        # 보
+        elif (s == '5'):
+            answer += '2'
+            
+    return answer
