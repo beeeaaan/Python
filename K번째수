@@ -1,0 +1,12 @@
+def solution(array, commands):
+    answer = []
+    answer_Slice =[]
+    
+    for i in range(len(commands)):
+        # 시작점은 i - 1, 끝점은 j
+        answer_Slice = array[commands[i][0] - 1:commands[i][1]]
+        answer_Slice.sort()
+        # k - 1 번째 배열 추가
+        answer.append(answer_Slice[commands[i][2] - 1])
+    
+    return answer
