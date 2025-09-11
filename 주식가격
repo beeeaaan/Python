@@ -1,0 +1,19 @@
+from collections import deque
+
+def solution(prices):
+    answer = []
+    q = deque(prices)
+    
+    while q:
+        price = q.popleft()
+        cnt = 0
+        
+        # 아무것도 남아 있지 않은 경우
+        if len(q) != 0:
+            for p in q:
+                cnt += 1
+                if price > p:
+                    break
+        answer.append(cnt)
+
+    return answer
