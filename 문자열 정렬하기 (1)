@@ -1,0 +1,20 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> solution(string my_string) {
+    vector<int> answer;
+    
+    for(int i = 0; i < my_string.size(); i++) {
+    	// 정수 확인
+        if(isdigit(my_string[i]))
+        	// int 변환 후 my_string i인덱스부터 + 1개 인덱스까지
+            answer.push_back(stoi(my_string.substr(i, 1)));
+    }
+    // 오름차순 정렬
+    sort(answer.begin(), answer.end());
+    
+    return answer;
+}
