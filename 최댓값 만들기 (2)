@@ -1,0 +1,4 @@
+def solution(numbers):
+    # 내림차순 정렬 후 가장 큰 두 수 곱하기
+    numbers.sort(reverse=True)
+    return max(numbers[0] * numbers[1], numbers[-1] * numbers[-2])
