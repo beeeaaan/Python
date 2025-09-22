@@ -1,0 +1,16 @@
+def solution(skill, skill_trees):
+    answer = 0
+    
+    for x in skill_trees:
+        temp = ''
+        
+        for y in x:
+            # 스킬트리 중 skill이 있는 경우
+            if y in skill:
+                temp += y
+                
+        # 만든 temp 기준으로 skill과 같은 경우
+        if temp == skill[:len(temp)]:
+        	answer+=1
+ 
+    return answer
