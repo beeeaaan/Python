@@ -1,0 +1,19 @@
+def solution(k, score):
+    answer = []
+    hall_Score = []
+    
+    for i in score:
+        # 명예의 전당 자리가 있을 경우
+        if (len(hall_Score) < k):
+            hall_Score.append(i)
+        # 명예의 전당 자리 다 찼을 경우
+        else:
+            # 명예의 전당의 가장 낮은 점수보다 큰 경우
+            if (i > min(hall_Score)):
+                hall_Score.remove(min(hall_Score))  # 제거
+                hall_Score.append(i)
+                
+        hall_Score.sort()
+        answer.append(hall_Score[0])
+        
+    return answer
