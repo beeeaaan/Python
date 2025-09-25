@@ -1,0 +1,46 @@
+import math
+
+def solution(fees, records):
+    p = dict()
+    r = dict()
+ 
+    for record in records:
+        time, num, state = record.split()
+        if state == "IN":
+            p[num] = time
+        else:
+            # 시간 계산
+            time1 = p[num]
+            acctime = (int(time[:2]) - int(time1[:2])) * 60 + \
+                (int(time[3:5]) - int(time1[3:5]))
+ 
+            del p[num]
+            # 누적 시간 갱신
+            r[num] = r.get(num, 0) + acctime
+ 
+    # OUT 하지 않은 차들 전부 23:59에 OUT한 것으로 처리
+    for num in p:
+        time1 = p[num]
+        time = "23:59"
+        acctime = (int(time[:2]) - int(time1[:2])) * 60 + \
+            (int(time[3:5]) - int(time1[3:5])) 
+        r[num] = r.get(num, 0) + acctime
+ 
+    # 누적 시간으로 금액 계산
+    for num in r:
+        acctime = r[num]
+ 
+        result = 0
+        if acctime <= fees[0]:
+            result = fees[1]
+        else:
+            result = fees[1] + math.ceil((acctime - fees[0]) / fees[2]) * fees[3]
+ 
+        r[num] = result 
+    t1 = sorted(r)
+    answer = []
+    
+    for t in t1:
+        answer.append(r[t])
+        
+    return answer
