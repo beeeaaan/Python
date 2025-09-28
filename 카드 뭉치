@@ -1,0 +1,11 @@
+def solution(cards1, cards2, goal):
+    # cards1, cards2 단어들로 goal 만들 수 있는 경우 "Yes" 없는 경우 "No"
+    for g in goal:
+        if len(cards1) > 0 and g == cards1[0]:
+            cards1.remove(g)
+        elif len(cards2) > 0 and g == cards2[0]:
+            cards2.remove(g)        
+        else:
+            return "No"
+    else:
+        return "Yes"
