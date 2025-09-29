@@ -1,0 +1,27 @@
+def solution(x, y, n):
+    answer = 0
+    current_Num = set()
+    current_Num.add(x)
+    
+    while current_Num:  # current_Num에 숫자가 남아있는 동안 반복
+        # 목표 숫자 y가 current_Num에 있는 경우
+        if y in current_Num:
+            return answer
+        
+        next_Num = set()
+        
+        for number in current_Num:
+            # number에 n을 더한 값이 y를 초과하지 않는 경우
+            if number + n <= y:
+                next_Num.add(number + n)
+            # number에 2를 곱한 값이 y를 초과하지 않는 경우
+            if number * 2 <= y:
+                next_Num.add(number * 2)
+            # number에 3을 곱한 값이 y를 초과하지 않는 경우
+            if number * 3 <= y:
+                next_Num.add(number * 3)     
+        current_Num = next_Num
+        answer += 1
+
+    # 끝까지 y에 도달할 수 없는 경우
+    return -1
