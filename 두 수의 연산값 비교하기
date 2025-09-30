@@ -1,0 +1,6 @@
+def solution(a, b):
+    plus_ab = int(str(a) + str(b))  # 더한 값
+    multiply_ab = 2 * a * b  # 곱한 값
+
+    # 더하거나 곱한 값 중 더 큰 값 반환
+    return max(plus_ab, multiply_ab)
