@@ -1,0 +1,10 @@
+def solution(a, b):
+    ab = int(str(a) + str(b))
+    ba = int(str(b) + str(a))
+    
+    # a + b 가 더 큰 경우
+    if(ab > ba):
+        return ab
+    # b + a가 더 큰 경우
+    else:
+        return ba
