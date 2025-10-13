@@ -1,0 +1,8 @@
+import re
+
+# 정규표현식 활용
+def solution(files):
+    x = sorted(files, key=lambda file : int(re.findall('\d{1,5}', file)[0]))
+    y = sorted(x, key=lambda file : re.split('\d{1,5}', file.lower())[0])
+
+    return y
