@@ -1,0 +1,55 @@
+import collections 
+
+def solution(m, n, board):
+    answer = 0
+    check_set = set()
+    board = list(map(lambda x: list(x), board))
+    
+    # 2x2 블록 조건 확인 후, 맞는 경우 집합에 해당 인덱스 추가 함수
+    def check(b):
+        for i in range(m-1):
+            for j in range(n-1):
+                if b[i][j] == b[i+1][j] == b[i][j+1] == b[i+1][j+1] != '0':
+                    check_set.add((i, j))
+                    check_set.add((i+1, j))
+                    check_set.add((i, j+1))
+                    check_set.add((i+1, j+1))
+    
+    # 격자 재배열 함수
+    def arrange(b):
+        for j in range(len(b[0])):
+            q = collections.deque([])
+            
+            # 격자 밑에서부터 탐색
+            for i in range(len(b)-1, -1, -1):
+                if b[i][j] == '0':
+                    q.append((i, j)) 
+                else:
+                    if q:
+                        qi, qj  = q.popleft()
+                        b[qi][qj] = b[i][j]
+                        b[i][j] = '0'
+                        # 테스트 케이스 5, 10을 통과하려면 해당 아이템이 밑으로 내려와서 
+                        # 공백이 생기는것 도 고려 해줘야 합니다.
+                        q.append((i, j)) 
+    
+    while True:
+    	# 공백 위치 기록
+        check(board)
+        
+        # 공백 있는 경우
+        if check_set:
+       		# 공백 기록
+            for i, j in check_set:
+                board[i][j] = '0'
+            # 공백 개수 추가
+            answer += len(check_set)
+            # 격자 재배열
+            arrange(board)
+            # 집합 비우기
+            check_set.clear()
+        # 공백 없는 경우
+        else:
+            break
+    
+    return answer
