@@ -1,0 +1,37 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<int> answers) {
+    vector<int> answer;    
+    // 수포자 찍는 배열
+    int a[] = {1, 2, 3, 4, 5};
+    int b[] = {2, 1, 2, 3, 2, 4, 2, 5};
+    int c[] = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+    int qr[3] = {0}; // 수포자 맞힌 점수 배열
+    int high_Score = 0; // 최고 점수
+    int x  = 0;
+    
+    while ( x < answers.size() ) {
+        // 1번 수포자 정답 맞춘 경우
+        if(answers[x] == a[x % 5])
+            qr[0]++;
+        // 2번 수포자 정답 맞춘 경우
+        if ( answers[x] == b[x % 8])
+            qr[1]++;
+        // 3번 수포자 정답 맞춘 경우
+        if ( answers[x] == c[x % 10])
+            qr[2]++;
+        x++;        
+    }
+    
+    // 최고 점수 구하기
+    high_Score = max( max(qr[0], qr[1]), max(qr[1], qr[2]) );
+    for(int i = 0; i < 3; i ++) {
+        if ( qr[i] == high_Score)
+            answer.push_back(i+1);        
+    }
+        
+    return answer;
+}
