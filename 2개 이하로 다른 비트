@@ -1,0 +1,21 @@
+def solution(numbers):
+    answer = []
+    
+    for n in numbers:
+        # 짝수인 경우
+        if n % 2 == 0:  
+            answer.append(n+1)  # 바로 다음에 오는 수       
+        # 홀수인 경우    
+        else:         
+            tmp = '0' + bin(n)[2:]
+            idx = tmp.rfind('0')  # 오른쪽부터 찾기
+            tmp = list(tmp)    
+            
+            tmp[idx] = '1'  # 가장 마지막에 나오는 0을 1로 바꾸기
+            tmp[idx+1] = '0'  # 그 다음 나오는 1을 0으로 바꾸기           
+            tmp = ''.join(tmp)
+            
+            num = int(tmp, 2)  # 2진수를 10진수 바꾸기
+            answer.append(num)
+            
+    return answer
