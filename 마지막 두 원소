@@ -1,0 +1,11 @@
+def solution(num_list):
+    num1, num2 = num_list[-1], num_list[-2]
+    
+    # 마지막 원소가 그전 원소보다 큰 경우
+    if num1 > num2:
+        num_list.append(num1 - num2)
+    # 크지 않은 경우
+    else:
+        num_list.append(num1 * 2)
+
+    return num_list
