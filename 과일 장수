@@ -1,0 +1,10 @@
+def solution(k, m, score):
+    answer = 0
+    sort_score = sorted(score, reverse = True)  # 내림차순 정렬
+
+    for i in range(len(sort_score) // m):
+        # i인덱스부터 m번째 뒤 인덱스까지 길이가 m인 경우
+        if len(sort_score[i:i+m]) == m:
+            answer += sort_score[i * m + (m-1)] * m   
+            
+    return answer
