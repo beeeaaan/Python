@@ -1,0 +1,7 @@
+def solution(numbers):
+	# 3번씩 이어 붙인 문자열 내림차순 정렬
+    num = sorted(numbers, key = lambda x: str(x) * 3, reverse = True)    
+    #문자열 전부 이어 붙이기
+    answer = ''.join(map(str, num))    
+    # num의 원소 모두 0인 경우
+    return answer if int(answer) != 0 else '0'
