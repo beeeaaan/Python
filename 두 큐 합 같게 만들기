@@ -1,0 +1,32 @@
+from collections import deque
+
+
+def solution(queue1, queue2):
+    answer = 0    
+    que1 = deque(queue1)
+    que2 = deque(queue2)    
+    sum1 = sum(que1)
+    sum2 = sum(que2)
+    
+    # 홀수인 경우
+    if (sum1 + sum2) % 2 != 0:
+        return -1
+    
+    while True:
+        if answer == 4 * len(queue1):
+            return -1        
+        # sum1, sum2 비교하여 합이 더 큰 경우
+        if sum1 > sum2:
+            value = que1.popleft()
+            que2.append(value)
+            sum1 -= value
+            sum2 += value
+        elif sum1 < sum2:
+            value = que2.popleft()
+            que1.append(value)
+            sum1 += value
+            sum2 -= value
+        else:
+            return answer
+        
+        answer += 1
