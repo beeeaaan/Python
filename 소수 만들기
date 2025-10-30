@@ -1,0 +1,16 @@
+from itertools import combinations
+
+def solution(nums):
+    count = 0
+
+    for num in combinations(nums, 3):
+        temp = sum(num)
+        
+        # 소수 개수 세기
+        for i in range(2, temp):
+            if temp % i == 0:
+                break
+        else:
+            count += 1
+
+    return count
