@@ -1,0 +1,22 @@
+def solution(arr):
+    n = len(arr)
+    answer = [0, 0]
+
+    def compress(x, y, n):
+        init = arr[x][y]
+        
+        for r in range(x, x+n):
+            for c in range(y, y+n):
+                # 동일하지 않은 경우
+                if arr[r][c] != init:
+                    n //= 2
+                    # 사등분 후 재귀함수 활용
+                    compress(x, y, n)
+                    compress(x, y+n, n)
+                    compress(x+n, y, n)
+                    compress(x+n, y+n, n)
+                    return
+        answer[init] += 1
+    compress(0, 0, n)
+    
+    return answer
