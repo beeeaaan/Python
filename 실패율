@@ -1,0 +1,17 @@
+def solution(N, stages):
+    answer = []    
+    fail = {}
+    all_Player = len(stages) 
+    
+    for i in range(1, N+1):
+        # 스테이지 도달한 플레이어 수가 0명인 경우
+        if all_Player == 0:
+            fail[i] = 0
+        else:
+            fail[i] = stages.count(i) / all_Player
+            # 현재 스테이지 멈춘 숫자만큼 제외하기
+            all_Player -= stages.count(i)        
+    # value 기준으로 정렬 후 key 저장하기
+    answer = sorted(fail, key=lambda x : fail[x], reverse=True)
+
+    return answer
