@@ -1,0 +1,19 @@
+def solution(bridge_length, weight, truck_weights):
+    answer = 0
+    bridge = [0] * bridge_length
+    
+    while len(truck_weights)!=0:
+        answer += 1
+        # 1초 지날 때마다 무조건 하나 빠지므로 미리 빼주기
+        bridge.pop(0)
+
+        #sum함수에서 시간초과가 나니, 변수 설정하는것 필요! (5번 케이스)
+        if sum(bridge) + truck_weights[0] <= weight:
+            bridge.append(truck_weights.pop(0))
+        else:
+            bridge.append(0)
+            
+    # 브릿지 큐에 마지막 트럭 들어갔으므로 브릿지 길이만큼 더하기
+    answer += bridge_length
+    
+    return answer
