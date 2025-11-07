@@ -1,0 +1,31 @@
+def solution(n):
+    answer = []
+    arr = [[0] * n for _ in range(n)]
+    arr_Size = n + (n * n - n) // 2  # 빈 칸 제외한 부분
+    count = 0
+    
+    for j in range(0, n):
+        # 아래로
+        for i in range(j, n):
+            if arr[i][j] > 0: continue
+            arr[i][j] = arr[i - 1][j] + 1
+            count += 1
+        # 오른쪽으로
+        for i in range(j, n - j):
+            if arr[n - 1 - j][i] > 0: continue
+            arr[n - 1 - j][i] = arr[n - 1 - j][i - 1] + 1
+            count += 1
+        # 대각선 위로(\)
+        for i in range(n - 1, j, -1):
+            if arr[i][i - j] > 0: continue
+            arr[i][i - j] = arr[i + 1][i + 1 - j] + 1
+            count += 1
+        if count == arr_Size:
+            break
+    
+    for r in range(n):
+        for c in range(n):
+            if arr[r][c] > 0:
+                answer.append(arr[r][c])
+                
+    return answer
