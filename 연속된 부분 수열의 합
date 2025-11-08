@@ -1,0 +1,20 @@
+def solution(sequence, k):
+    x = r = 0
+    answer = [0, len(sequence)]
+    sum = sequence[0]
+
+    while True:
+        # k보다 작은 경우
+        if sum < k:
+            r += 1
+            if r == len(sequence): break
+            sum += sequence[r]
+        else:
+            # k와 같은 경우
+            if sum == k:
+                if r-x < answer[1] - answer[0]:
+                    answer = [x, r]
+            sum -= sequence[x]
+            x += 1
+            
+    return answer
