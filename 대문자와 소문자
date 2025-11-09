@@ -1,0 +1,5 @@
+def solution(my_string):
+    # swapcase() : 대소문자 상호변환
+    answer = my_string.swapcase()
+    
+    return answer
