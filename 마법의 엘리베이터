@@ -1,0 +1,20 @@
+def solution(s):
+    answer = 0
+    
+    while(s):
+        x = s % 10
+        # 6~9인 경우
+        if x > 5:
+            answer += (10 - x)
+            s += 10
+        # 0~4인 경우
+        elif x < 5:
+            answer += x
+        # 5인 경우
+        else:
+            if (s // 10) % 10 > 4:
+                s += 10
+            answer += 5
+        s //= 10
+    
+    return answer
