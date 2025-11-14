@@ -1,0 +1,23 @@
+from collections import Counter
+
+def solution(weights):
+    answer = 0    
+    cnter = Counter(weights)  # 1:1
+    
+    for key, value in cnter.items():
+        if value >= 2:
+            answer+= value * (value - 1) // 2
+    weight = set(weights) # 1:1 구한 후 중복 제거  
+    
+    for w in weight:
+        # 2:3
+        if w * 2 / 3 in weight:
+            answer += cnter[w * 2 / 3] * cnter[w]
+        # 2:4
+        if w * 2 / 4 in weight:
+            answer += cnter[w * 2 / 4] * cnter[w]
+        # 3:4
+        if w * 3 / 4 in weight:
+            answer += cnter[w * 3 / 4] * cnter[w]
+            
+    return answer
