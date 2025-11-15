@@ -1,0 +1,17 @@
+def solution(s):
+    cnt1, cnt2 = 0, 0
+    answer = 0
+    x = ""
+    
+    # 글자 같은 경우 문자열 분해 후 문자열 개수 반환
+    for i in s:
+        if cnt1 == cnt2:
+            cnt1 += 1
+            x = i
+            answer += 1
+        elif i == x:
+            cnt1 += 1
+        else:
+            cnt2 += 1
+            
+    return answer
