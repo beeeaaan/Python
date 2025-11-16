@@ -1,0 +1,28 @@
+def solution(n, wires):
+    answer = 101
+
+    for i in range(len(wires)):
+        tmp = [row[:] for row in wires] 
+        compare = tmp.pop(i)  # 하나의 전선 제거
+        compare_x, compare_y = set([compare[0]]), set([compare[1]])  # 집합으로 변환        
+        check = True  # 더 추가할 노드가 있는지 확인
+        
+        while check:
+            check = False
+            for num in tmp:
+                # compare_x에 포함된 노드가 있는 경우
+                if any(x in compare_x for x in num):
+                    if num[0] not in compare_x or num[1] not in compare_x:
+                        compare_x.update(num)
+                        check = True
+                
+                # compare_y에 포함된 노드가 있는 경우
+                if any(x in compare_y for x in num):
+                    if num[0] not in compare_y or num[1] not in compare_y:
+                        compare_y.update(num)
+                        check = True
+        
+        # 크기 차이 계산
+        answer = min(answer, abs(len(compare_x) - len(compare_y)))
+
+    return answer
