@@ -1,0 +1,36 @@
+def solution(dartResult):
+    answer = 0    
+    score = list()
+    num = ''
+    
+    for i in dartResult:
+        # 'S'인 경우
+        if (i == 'S'):
+            score.append(int(num) ** 1)
+            num = ''
+        # 'D'인 경우
+        elif (i == 'D'):
+            score.append(int(num) ** 2)
+            num = ''
+        # 'T'인 경우
+        elif (i == 'T'):
+            score.append(int(num) ** 3)
+            num = ''
+        # '*'인 경우
+        elif (i == '*'):
+            # 1개인 경우
+            if (len(score) == 1):
+                score[0] *= 2
+            # 2개 이상인 경우
+            else:
+                score[-1] *= 2
+                score[-2] *= 2
+        # '#'인 경우
+        elif (i == '#'):
+            score[-1] *= -1
+        # 숫자인 경우
+        else:
+            num += i            
+    answer = sum(score)
+    
+    return answer
