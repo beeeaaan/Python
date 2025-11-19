@@ -1,0 +1,23 @@
+def solution(book_time):
+    # 시간을 분 단위로 변환하는 함수
+    def to_minutes(time):
+        hour, minute = map(int, time.split(":"))
+        return hour * 60 + minute
+
+    # 예약 시간 리스트 정렬
+    book = sorted([(to_minutes(start), to_minutes(end) + 10) for start, end in book_time])
+    # 객실
+    room = []
+
+    for start, end in book:
+        for i in range(len(room)):
+            # 객실 사용 후 10분 지난 경우 새로운 예약 할당
+            if room[i] <= start:
+                room[i] = end 
+                break
+        # 새로운 객실이 필요한 경우
+        else:
+            room.append(end)
+
+    # 필요한 객실 수 반환
+    return len(room)
