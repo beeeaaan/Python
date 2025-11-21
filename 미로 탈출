@@ -1,0 +1,52 @@
+from collections import deque
+
+def bfs(start, end, maps):
+	# 탐색 방향
+    dy = [0, 1, -1, 0]
+    dx = [1, 0, 0, -1]
+    leng = len(maps)  # 세로
+    wid = len(maps[0])  # 가로
+    visit = [[False] * wid for _ in range(leng)]
+    deq = deque()
+    flag = False
+    
+    for i in range(leng):
+        for j in range(wid):
+        	# 출발하고자 하는 지점인 경우
+            if maps[i][j] == start:      
+                deq.append((i, j, 0))    
+                visit[i][j] = True
+                flag = True; break  # 시작 지점 한개만 존재
+        if flag: break
+                
+    # BFS 알고리즘
+    while deq:
+        y, x, cost = deq.popleft()
+        
+        if maps[y][x] == end:
+            return cost
+        
+        for i in range(4):
+            lengy = y + dy[i]
+            lengx = x + dx[i]
+            
+            # map 범위 내 벽이 아닌 경우
+            if 0 <= lengy < leng and 0 <= lengx < wid and maps[lengy][lengx] !='X':
+                # 아직 방문하지 않은 통로인 경우
+                if not visit[lengy][lengx]:
+                    deq.append((lengy, lengx, cost+1))
+                    visit[lengy][lengx] = True
+    
+    # 탈출할 수 없는 경우
+    return -1
+                    
+def solution(maps):
+    map1 = bfs('S', 'L', maps)
+    map2 = bfs('L', 'E', maps)
+    
+    # map 모두 -1이 아닌 경우
+    if map1 != -1 and map2 != -1:
+        return map1 + map2
+        
+   	# 둘 중 하나라도 -1인 경우
+    return -1
