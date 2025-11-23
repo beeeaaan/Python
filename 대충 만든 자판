@@ -1,0 +1,27 @@
+def solution(keymap, targets):
+    # 알파벳별 가장 빨리 입력할 수 있는 횟수 계산
+    x = dict()
+    
+    for keys in keymap:
+        for key in keys:
+            # 가장 적게 누르는 값 계산
+            if key in x:
+                x[key] = min(keys.index(key) + 1, x[key])
+            else:
+                x[key] = keys.index(key) + 1
+    
+    answer = []
+    
+    # 정답 구하기
+    for target in targets:
+        count = 0
+        
+        for s in target:
+            if s not in x:
+                answer.append(-1)
+                break           
+            count += x[s]
+        else:
+            answer.append(count)
+        
+    return answer
