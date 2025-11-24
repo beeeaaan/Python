@@ -1,0 +1,30 @@
+from math import gcd
+
+def solution(arrayA, arrayB):
+    answer = 0
+    gcdA = GCD(arrayA)  # 철수 숫자 카드 최대공약수
+    gcdB = GCD(arrayB)  # 영희 숫자 카드 최대공약수
+    A1 = gcdA if condition(gcdA, arrayB) else 0
+    A2 = gcdB if condition(gcdB, arrayA) else 0
+    answer = max(A1, A2)
+    
+    return answer
+
+# 정수 배열 최대 공약수 구하기(함수)
+def GCD(array) :
+    result = array[0]
+    
+    if (len(array) == 1) :
+        return result
+    
+    for i in range(1, len(array)) :
+        result = gcd(result, array[i])
+    return result
+
+def condition(n,array) :
+    if (n == 1) :
+        return 0
+    for a in array :
+        if( a % n == 0) :
+            return 0
+    return 1
