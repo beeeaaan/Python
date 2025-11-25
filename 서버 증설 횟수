@@ -1,0 +1,21 @@
+def solution(players, m, k):
+    add_Server = [0] * 24  # 증설된 서버 수
+    count = 0  # 증설 횟수
+    
+    for i in range(24):
+        need_Server = players[i] // m  # 필요한 서버 수
+        
+        # 필요 서버 수가 증설 서버 수보다 큰 경우
+        if need_Server > add_Server[i]:
+            temp = need_Server - add_Server[i]  # 증설 횟수
+            count += temp
+            
+            # k시간동안 켜두기
+            if i + k < 24:
+                for j in range(i, i + k):
+                    add_Server[j] += temp
+            else:
+                for j in range(i, 24):
+                    add_Server[j] += temp
+
+    return count
