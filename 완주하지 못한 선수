@@ -1,0 +1,11 @@
+def solution(participant, completion):
+    participant.sort()
+    completion.sort()
+    completion.append("")
+
+    for i in range(len(participant)):
+        # 완주하지 못한 경우
+        if participant[i] != completion[i]:
+            break
+
+    return participant[i]
