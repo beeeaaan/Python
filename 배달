@@ -1,0 +1,24 @@
+import heapq as hq
+
+def solution(N, road, K):
+    # 초기화
+    node = [[500001 for _ in range(N+1)] for _ in range(N+1)]
+    
+    for i in range(1, N+1):
+        node[i][i] = 0
+    
+    # 최소 거리만 저장
+    for a, b, k in road:
+        node[a][b] = min(node[a][b], k)
+        node[b][a] = min(node[b][a], k)
+    
+    # 플로이드 워셜
+    # (경우에 따라서 i 노드에서 바로 j 노드로 가는 것보다 i 노드에서 k 노드를 거쳐 j 노드로 도착하는 것이 최단 경로인 경우)
+    for k in range(1, N+1):
+        for i in range(1, N+1):
+            for j in range(1, N+1):
+                node[i][j] = min(node[i][j],node[i][k] + node[k][j])
+    
+    answers = [x for x in node[1] if x <= K]
+    
+    return len(answers)
