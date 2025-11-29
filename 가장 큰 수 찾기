@@ -1,0 +1,4 @@
+def solution(array):
+    # max() : 가장 큰 수 찾기
+    # index() : 특정 인덱스 값 추출
+    return [max(array), array.index(max(array))]
