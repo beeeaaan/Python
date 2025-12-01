@@ -1,0 +1,21 @@
+from itertools import combinations
+from collections import Counter
+
+def solution(orders, course):
+    answer = []
+
+    for num in course:
+        menu = []
+
+        # 주문 가능한 코스 요리 후보 만들기
+        for order in orders:
+            # 순서 다른 같은 메뉴 방지 위해 정렬 후 조합
+            menu += combinations(sorted(order), num)
+        counter = Counter(menu)
+
+        for key, value in counter.items():
+            # 주문 횟수 가장 많은 조합 구하기(최소 2회 이상)
+            if (value >= 2) and (value == max(counter.values())):
+                answer.append("".join(key))
+
+    return sorted(answer)
