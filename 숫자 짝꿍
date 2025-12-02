@@ -1,0 +1,27 @@
+def solution(X, Y):
+    answer = ''
+    # 0~9까지의 리스트
+    a = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    b = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+    # X, Y 몇번 나오는지 확인
+    for i in X:
+        value = int(i)
+        a[value] += 1
+        
+    for i in Y:
+        value = int(i)
+        b[value] += 1
+    
+    # 중복 확인
+    for i in range(9, -1, -1):
+        value = str(i) * min(a[i], b[i])
+        answer += value
+ 
+    # 결과 길이가 0인 경우
+    if(len(answer) == 0):
+        return '-1'
+    if(answer[0] == '0'):
+        return '0'
+              
+    return answer
