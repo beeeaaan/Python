@@ -1,0 +1,6 @@
+def solution(my_string, is_prefix) : 
+    # startwith(특정 문자열) : 특정 문자열로 시작하는지 확인
+    if my_string.startswith(is_prefix):
+        return 1
+    else:
+        return 0
