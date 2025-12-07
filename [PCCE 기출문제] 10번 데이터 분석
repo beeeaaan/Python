@@ -1,0 +1,14 @@
+def solution(data, ext, val_ext, sort_by):
+    answer = []
+    dic = {"code":0, "date":1, "maximum":2, "remain":3}
+    
+    for d in data:
+        val = d[dic[ext]]
+        
+        # val_ext보다 작은 경우
+        if val <= val_ext:
+            answer.append(d)
+    # 오름차순 정렬(수량 적은 순서)
+    answer.sort(key = lambda x : x[dic[sort_by]])
+    
+    return answer
