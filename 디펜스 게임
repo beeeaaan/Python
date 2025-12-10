@@ -1,0 +1,26 @@
+import heapq
+
+def solution(n, k, enemy):
+    heap = []
+    answer = 0
+    sum = 0
+
+    # 합계 구하기
+    for i in enemy:
+        heapq.heappush(heap, (-i, i))
+        sum += i
+        answer += 1
+
+        # sum이 n보다 크고
+        if sum > n:
+            # k가 남아있는 경우
+            if k:
+                # 최대값 제거
+                sum -= heapq.heappop(heap)[1]
+                k -= 1
+            # k가 남아있지 않은 경우
+            else:
+                # -1 반환
+                return answer - 1
+
+    return answer
