@@ -1,0 +1,14 @@
+def solution(n):
+    answer = [n]
+
+    while n != 1:
+        # 짝수일 경우
+        if n % 2:
+            n = 3 * n + 1
+        # 홀수일 경우
+        else:
+            n //= 2
+        
+        answer.append(n)
+
+    return answer
