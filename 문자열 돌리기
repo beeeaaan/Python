@@ -1,0 +1,5 @@
+str = input()
+
+# 하나씩 출력
+for i in str:
+    print(i)
