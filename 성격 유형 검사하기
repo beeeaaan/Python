@@ -1,0 +1,19 @@
+def solution(survey, choices):
+    answer = ''
+    score  = {'R': 0, 'T': 0, 'C': 0, 'F': 0, 'J': 0, 'M': 0, 'A': 0, 'N': 0}
+    
+    for index, personality_pair in enumerate(survey):
+        # choices 값이 4보다 작은 경우
+        if choices[index] < 4:
+            score [personality_pair[0]] += 4 - choices[index]        
+        # choices 값이 4보다 큰 경우
+        elif choices[index] > 4:
+            score [personality_pair[1]] += choices[index] - 4
+    
+    # 점수 같은 경우 알파벳 순으로 앞의 성격 유형 선택
+    answer += 'R' if score ['R'] >= score ['T'] else 'T'
+    answer += 'C' if score ['C'] >= score ['F'] else 'F'
+    answer += 'J' if score ['J'] >= score ['M'] else 'M'
+    answer += 'A' if score ['A'] >= score ['N'] else 'N'
+    
+    return answer
