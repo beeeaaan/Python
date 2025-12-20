@@ -1,0 +1,53 @@
+from collections import deque
+
+dx, dy = [0, 0, -1, 1], [-1, 1, 0, 0]
+
+# BFS 탐색(해당 섬에 있는 숫자들의 합(머무를 수 있는 날짜 수))
+def island(maps, i, j, n, m, visit):    
+    visit[i][j] = 1    
+    q = deque()
+    q.append([i, j])    
+    day = 0
+    
+    while q:
+        i, j = q.popleft()       
+        day += int(maps[i][j])
+        
+        # 4방향 탐색
+        for d in range(4):
+            x, y = i + dx[d], j + dy[d]
+            
+            # 맵 범위를 벗어난 경우
+            if not (0 <= x < n and 0 <= y < m):
+                continue            
+            # 아직 방문하지 않고 바다가 아닌 경우
+            if visit[x][y] == 0 and maps[x][y] != 'X':
+                q.append([x, y]) 
+                visit[x][y] = 1 
+                
+    return day
+
+def solution(maps):
+    answer = []
+    
+    # 문자열을 2차원 리스트로 변환
+    for i in range(len(maps)):
+        maps[i] = list(maps[i])
+        
+    n = len(maps)  
+    m = len(maps[0])     
+    visit = [[0] * m for _ in range(n)]
+    
+    # 섬 탐색
+    for i in range(n):
+        for j in range(m):
+            # 바다가 아니고 아직 방문하지 않은 경우
+            if maps[i][j] != 'X' and visit[i][j] == 0:
+                answer.append(island(maps, i, j, n, m, visit))
+                
+    # 섬이 하나라도 있을 경우
+    if answer:
+        return sorted(answer)
+    else:
+        # 섬이 없을 경우
+        return [-1]
