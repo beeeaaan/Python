@@ -1,0 +1,29 @@
+from collections import deque
+
+# 팩토리얼 계산 함수
+def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n-1)
+
+def solution(n, k):
+    answer = []
+    deq = deque([i for i in range(1, n+1)])
+    
+    while n > 1:
+        fact = factorial(n-1)        
+        # k번째 순열의 첫 번째 원소 인덱스 계산
+        idx = (k-1) // fact
+        # 해당 인덱스 숫자 선택
+        num = deq[idx]
+        answer.append(num)        
+        # 선택한 숫자 제거
+        deq.remove(num)        
+        n -= 1       
+        # 나머지 값
+        k %= fact 
+
+    # 마지막 남은 숫자 하나 추가
+    answer.append(deq[0])
+        
+    return answer
