@@ -1,0 +1,18 @@
+def solution(wallpaper):
+    x_min = float('inf')
+    y_min = float('inf')
+    x_max = 0
+    y_max = 0
+
+    for i in range(len(wallpaper)):         # 세로(y)
+        for j in range(len(wallpaper[0])):  # 가로(x)
+            # 현재 위치가 파일(#)인 경우
+            if wallpaper[i][j] == '#':
+                x_min = min(x_min, i)
+                y_min = min(y_min, j)
+                
+                # +1(오른쪽/아래 끝이 포함시키기 위해)
+                x_max = max(x_max, i + 1)
+                y_max = max(y_max, j + 1)
+
+    return [x_min, y_min, x_max, y_max]
