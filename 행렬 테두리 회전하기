@@ -1,0 +1,45 @@
+def solution(rows, columns, queries):
+    matrix = [[0] * columns for _ in range(rows)]
+    num = 1
+    
+    for r in range(rows):
+        for c in range(columns):
+            matrix[r][c] = num
+            num += 1
+
+    answer = []
+    
+    # 각 쿼리별 회전
+    for query in queries:
+        x1, y1, x2, y2 = query
+        x1 -= 1
+        y1 -= 1
+        x2 -= 1
+        y2 -= 1
+        coords = []
+
+        # 위쪽 가로 (왼쪽 -> 오른쪽)
+        for c in range(y1, y2 + 1):
+            coords.append((x1, c))
+        # 오른쪽 세로 (위 -> 아래, 한 칸 아래부터)
+        for r in range(x1 + 1, x2):
+            coords.append((r, y2))
+        # 아래쪽 가로 (오른쪽 -> 왼쪽)
+        for c in range(y2, y1 - 1, -1):
+            coords.append((x2, c))
+        # 왼쪽 세로 (아래 -> 위, 한 칸 위까지)
+        for r in range(x2 - 1, x1, -1):
+            coords.append((r, y1))
+
+        # 테두리 숫자 추출
+        values = [matrix[r][c] for (r, c) in coords]
+        # 회전 : 마지막 값 앞으로 이동
+        rotated = [values[-1]] + values[:-1]
+        # 최소값 저장
+        answer.append(min(rotated))
+
+        # 회전된 값 다시 넣기
+        for (r, c), val in zip(coords, rotated):
+            matrix[r][c] = val
+
+    return answer
