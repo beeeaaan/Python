@@ -1,0 +1,45 @@
+def calc(a, b, oper):
+    if oper == '+':
+        return a + b
+    elif oper == '-':
+        return a - b
+    return a * b
+
+def solution(expression):
+    # 우선순위 조합대로 계산하기
+    operations = [('+', '-', '*'), ('+', '*', '-'), ('-', '+', '*'), ('-', '*', '+'), ('*', '+', '-'),('*', '-', '+')]
+
+    # 부호 기준으로 나누기
+    ex = []
+    temp = ''
+    
+    for e in expression:
+        if e.isdigit() == False:
+            ex.append(int(temp))
+            ex.append(e)
+            temp = ''
+            continue            
+        temp += e
+        
+    ex.append(int(temp))
+    answer = []
+    
+    for operation in operations:
+        temp = ex[:]
+        x = 0
+        
+        while len(temp) > 1:
+            if operation[x] in temp:
+                index = temp.index(operation[x])
+                temp.insert(index-1, calc(temp[index-1], temp[index+1], operation[x]))
+
+                temp.pop(index)
+                temp.pop(index)
+                temp.pop(index)
+            else:
+                x += 1
+                
+        answer.append(abs(temp[0]))
+
+    # 가장 큰 값 반환
+    return max(answer)
