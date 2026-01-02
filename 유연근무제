@@ -1,0 +1,28 @@
+def convertTime(n):
+    return (n // 100) * 60 + (n % 100)
+C
+def solution(schedules, timelogs, startday):
+    answer = 0
+
+    for i in range(len(schedules)):
+        day = startday
+        limit = convertTime(schedules[i]) + 10  # 지각 기준 시간
+
+        for time in timelogs[i]:
+            # 주말 검사하지 않음
+            if day in (6, 7):
+                day = day % 7 + 1
+                continue
+
+            # 지각일 경우 탈락
+            if convertTime(time) > limit:
+                break
+
+            # 다음 날 이동
+            day = day % 7 + 1
+
+        # 한 번도 지각하지 않은 경우
+        else:
+            answer += 1
+
+    return answer
