@@ -1,0 +1,6 @@
+def solution(myString):
+    for c in "abcdefghijk":
+        # replace() : 특정 문자 -> 새 문자
+        myString = myString.replace(c, "l")
+        
+    return myString
