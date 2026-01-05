@@ -1,0 +1,15 @@
+def solution(players, callings):
+    # 선수 이름과 인덱스 매핑 
+    player_dic = {player: idx for idx, player in enumerate(players)}
+
+    for call in callings:
+        # 호출된 선수 인덱스 찾기
+        player_idx = player_dic[call]        
+        # 호출된 선수와 앞선 선수의 순위 교환        
+        players[player_idx], players[player_idx-1] = players[player_idx-1], players[player_idx]
+        
+        # 선수 인덱스 업데이트
+        player_dic[players[player_idx]] = player_idx
+        player_dic[players[player_idx-1]] = player_idx-1
+    
+    return players
