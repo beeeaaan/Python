@@ -1,0 +1,59 @@
+# '(' 와 ')'의 개수 같은지 확인하는 함수
+def balance(p):
+    return p.count("(") == p.count(")")
+
+# 올바른 괄호 문자열인지 확인하는 함수
+def correct(p):
+    cnt = 0
+    
+    for i in p:
+        if i == "(":
+            cnt += 1
+        else:
+            # 닫는 괄호가 먼저 나올 경우 올바르지 않음
+            if cnt == 0:
+                return False
+            cnt -= 1
+            
+    return True
+
+def solution(p):
+    answer = ""
+
+    # 빈 문자열인 경우 빈 문자열 반환
+    if p == "":
+        return answer
+
+    # x, y 분리(균형잡힌 괄호 문자열)
+    x, y = p, ""
+    
+    for i in range(1, len(p) + 1):
+        if balance(p[:i]):
+            x = p[:i]
+            y = p[i:]
+            
+            break
+
+    # 올바른 괄호 문자열인 경우 재귀적으로 처리한 결과 붙이기
+    if correct(x):
+        answer = x + solution(y)
+    else:
+        # 올바른 괄호 문자열이 아닌 경우 새로운 문자열 생성
+        answer = "("
+        answer += solution(y)
+        answer += ")"
+
+        # 첫 문자와 마지막 문자 제거
+        x = list(x[1:-1])
+
+        # 남은 괄호 방향 뒤집기
+        for i in range(len(x)):
+            if x[i] == "(":
+                x[i] = ")"
+            else:
+                x[i] = "("
+
+        # 뒤집은 괄호 추가
+        answer += "".join(x)
+
+    return answer
