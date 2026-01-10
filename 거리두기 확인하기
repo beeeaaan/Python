@@ -1,0 +1,43 @@
+from collections import deque
+
+def manhattan(place):
+    # 방향(상, 하, 좌, 우)
+    dire = [(-1,0), (1,0), (0,-1), (0,1)]
+    
+    for i in range(5):
+        for j in range(5):
+            # 사람이 있는 위치인 경우
+            if place[i][j] == 'P':
+                dq = deque([(i, j, 0)])                
+                visit = set()
+                visit.add((i, j))
+                
+                while dq:
+                    x, y, dist = dq.popleft()
+                    
+                    # 맨해튼 거리 2까지만 확인
+                    if dist >= 2:
+                        continue
+                    
+                    for dx, dy in dire:
+                        nx, ny = x + dx, y + dy
+                        
+                        # 범위 내에 있고 아직 방문하지 않은 경우
+                        if 0 <= nx < 5 and 0 <= ny < 5 and (nx, ny) not in visit:
+                            
+                            # 거리 2 이내에 다른 사람이 있는 경우 규칙 위반
+                            if place[nx][ny] == 'P':
+                                return 0
+                            
+                            # 빈 자리(O)인 경우 계속 확인
+                            if place[nx][ny] == 'O':
+                                dq.append((nx, ny, dist + 1))
+                            
+                            visit.add((nx, ny))
+    
+    # 모든 사람 간 거리두기 지켜진 경우
+    return 1
+                            
+def solution(places):
+    # 각 대기실 거리두기 검사 결과 반환
+    return [manhattan(place) for place in places]
