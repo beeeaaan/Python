@@ -1,0 +1,36 @@
+from heapq import heapify, heappush, heappop
+
+def solution(operations):
+    answer = []
+    hq = []
+    
+    for operation in operations:
+        alpha, num = operation.split()
+        num = int(num)
+
+        # 'I'인 경우
+        if alpha == 'I':
+            heappush(hq, num)  
+        # 'D'인 경우
+        else:
+            # 큐 비어있으면 삭제 연산 무시
+            if hq:
+                if num == -1:
+                    # 최소값 삭제
+                    heappop(hq)
+                else:
+                    hq.sort()
+                    # 최대값 삭제
+                    hq.pop()
+                    
+    # 모든 연샨 처리 후 정렬
+    hq.sort()
+    
+    # 큐 비어있지 않은 경우
+    if hq:
+        answer = [hq[-1], hq[0]]
+    # 큐 비어있는 경우
+    else:
+        answer = [0, 0]
+        
+    return answer
