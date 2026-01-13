@@ -1,0 +1,21 @@
+import heapq
+
+def solution(n, works):
+    answer = 0
+    # 음수 변환(가장 큰 작업량 먼저 줄이기 위해서)
+    works = [ -work for work in works]
+    # 힙 구조 변환
+    heapq.heapify(works)
+    
+    # n시간동안 작업량 1씩 줄이기
+    for _ in range(n):
+        # 가장 작은 값(가장 큰 작업량)
+        work = heapq.heappop(works)
+        heapq.heappush(works, work + 1)
+    
+    # 야근 피로도 계산(남은 작업량 제곱해서 더하기)
+    for i in works:
+        # i가 음수일 경우
+        if i < 0: answer += i * i
+    
+    return answer
