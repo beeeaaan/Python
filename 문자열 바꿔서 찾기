@@ -1,0 +1,3 @@
+def solution(myString, pat):   
+    # replace() : 문자열 변경
+    return int(pat.replace('A', 'b').replace('B', 'a') in myString.lower())
