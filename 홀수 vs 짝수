@@ -1,0 +1,16 @@
+def solution(num_list):
+    odd = 0
+    even = 0
+    
+    for i in range(len(num_list)):
+        # 홀수 번째일 경우의 합
+        if i % 2 == 0:
+            odd += num_list[i]
+        # 짝수 번째일 경우의 합
+        else:
+            even += num_list[i] 
+            
+    if odd > even:
+        return odd
+    elif odd <= even:
+        return even
