@@ -1,0 +1,3 @@
+def solution(names):
+    # 앞에서 부터 5명씩
+    return names[::5]
