@@ -1,0 +1,9 @@
+def solution(todo_list, finished):
+    answer = []
+    
+    for i in range(len(finished)):
+        # 아직 마치지 못한 일이 있을 경우
+        if finished[i] == False:
+            answer.append(todo_list[i])
+            
+    return answer
