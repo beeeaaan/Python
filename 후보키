@@ -1,0 +1,94 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String[][] relation) {
+        int answer = 0;
+        int rowCnt = relation.length;  // 튜플 개수
+        int colCnt = relation[0].length;  // 속성 개수
+        List<Integer> arr = new ArrayList<>();  // 컬럼 인덱스 리스트
+        
+        for (int i = 0; i < colCnt; i++) {
+            arr.add(i);
+        }
+
+        // 이미 후보키로 확정된 조합들(최소성 확인용)
+        List<List<Integer>> except = new ArrayList<>();
+
+        for (int i = 1; i <= colCnt; i++) {
+            List<List<Integer>> result = new ArrayList<>();
+
+            // 컬럼 인덱스 조합
+            combination(arr, new boolean[colCnt], 0, i, result);
+
+            // 기존 후보키 포함하는 조합 제거(최소성)
+            result = removeExceptCombination(result, except);
+
+            // 유일성 검사
+            for (List<Integer> indexes : result) {
+                Set<String> set = getCombinationContents(relation, indexes);
+                // 모든 튜플이 유일할 경우 후보키
+                if (set.size() == rowCnt) {
+                    answer++;
+                    except.add(indexes);
+                }
+            }
+        }
+        
+        return answer;
+    }
+
+    // 백트래킹 활용하여 r개 컬럼 조합 생성
+    public void combination(List<Integer> arr, boolean[] visit, int start, int r, List<List<Integer>> result) {
+        if (r == 0) {
+            List<Integer> visitIndex = new ArrayList<>();
+            
+            for (int i = 0; i < visit.length; i++) {
+                if (visit[i])
+                    visitIndex.add(arr.get(i));
+            }
+            result.add(visitIndex);
+            return;
+        }
+
+        for (int i = start; i < arr.size(); i++) {
+            visit[i] = true;
+            combination(arr, visit, i + 1, r - 1, result);
+            visit[i] = false;
+        }
+    }
+
+    // 특정 컬럼 조합으로 튜플 값들 합쳐 Set 생성(유일성 체크용)
+    public Set<String> getCombinationContents(String[][] relation, List<Integer> indexes) {
+        Set<String> result = new HashSet<>();
+
+        for (String[] row : relation) {
+            String content = "";
+            
+            for (Integer index : indexes) {
+                content += row[index];
+            }
+            result.add(content);
+        }
+        return result;
+    }
+
+    // 기존 후보키 모두 포함하는 조합 제거(최소성 위반)
+    public List<List<Integer>> removeExceptCombination(List<List<Integer>> target, List<List<Integer>> except) {
+        if (except.isEmpty())
+            return target;
+
+        List<List<Integer>> remove = new ArrayList<>();
+        
+        for (List<Integer> t : target) {
+            for (List<Integer> e : except) {
+                if (t.containsAll(e)) {
+                    remove.add(t);
+                    break;
+                }
+            }
+        }
+        target.removeAll(remove);
+        
+        return target;
+    }
+}
