@@ -1,0 +1,28 @@
+# (row, col)을 왼쪽 위로 하는 size x size 영역이 모두 "-1"인지 확인
+def check(row, col, size, park):
+    for i in range(row, row + size):
+        for j in range(col, col + size):
+            # 하나라도 "-1"인 아닌 경우 실패
+            if park[i][j] != "-1":
+                return False
+    return True
+
+def solution(mats, park):
+    result = []
+    row = len(park)
+    col = len(park[0])
+    
+    for i in range(row):
+        for j in range(col):
+            # 시작 지점이 빈 공간일 경우에만 검사
+            if park[i][j] == "-1":
+                for k in mats:
+                    # 공원 범위를 벗어날 경우 패스
+                    if i + k > row or j + k > col:
+                        continue
+                    # k x k 영역이 전부 "-1"인 경우 가능
+                    if check(i, j, k, park):
+                        result.append(k)
+    
+    # 설치 가능한 돗자리가 없을 경우 -1, 있을 경우 가장 큰 크기 반환
+    return max(result) if result else -1
