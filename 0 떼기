@@ -1,0 +1,3 @@
+def solution(n_str):
+    # lstrip() : 문자열 시작 기준으로 제거
+    return n_str.lstrip('0')
