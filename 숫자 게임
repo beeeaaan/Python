@@ -1,0 +1,17 @@
+def solution(A, B):
+    answer = 0
+    
+    # 가장 큰 수부터 비교하기 위해 내림차순 정렬
+    A.sort(reverse=True)
+    B.sort(reverse=True)
+    
+    for a in A:
+        # B의 가장 큰 카드로도 A를 이길 수 없을 경우 패스
+        if a >= B[0]:
+            continue
+        else:
+            # B가 이길 수 있는 경우 승점 1점 추가와 사용한 B의 카드 제거
+            answer += 1
+            del B[0]
+            
+    return answer
