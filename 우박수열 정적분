@@ -1,0 +1,36 @@
+def getCollatz(k):
+    result = []
+    
+    while k != 1:
+        result.append(k)
+        # 짝수일 경우 /2, 홀수일 경우 k*3+1
+        k = k / 2 if k % 2 == 0 else k * 3 + 1 
+    
+    # 마지막 1 추가
+    result.append(k)
+    return result
+ 
+def solution(k, ranges):
+    answer = []
+    
+    collatz = getCollatz(k)
+ 
+    for r in ranges:
+        total = 0
+        
+        # 구간 시작 ~ 끝(len 기준 음수 인덱스 가능)
+        collatzRange = collatz[r[0] : len(collatz) + r[1]]
+        
+        # 시작점이 끝점보다 클 경우 유효하지 않은 구간
+        if r[0] >= r[1] + len(collatz):
+            answer.append(-1)
+            continue
+            
+        # 인접한 두 점으로 사다리꼴 넓이 계산
+        # 사다리꼴 넓이 = (윗변+아랫변) / 2 * 높이(1)
+        for i in range(len(collatzRange) - 1):
+            total += (collatzRange[i] + collatzRange[i + 1]) / 2
+        
+        answer.append(total)
+        
+    return answer
