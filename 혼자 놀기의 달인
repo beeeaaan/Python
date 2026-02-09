@@ -1,0 +1,26 @@
+def solution(cards):
+    answer = []
+    visit = [False] * (len(cards) + 1)
+    
+    for v in cards:
+        # 아직 방문하지 않은 카드일 경우
+        if not visit[v]:
+            temp = [] 
+            
+            # 이미 나온 카드가 나올 때까지 반복
+            while v not in temp:
+                temp.append(v)
+                v = cards[v - 1]
+                visit[v] = True
+           
+            answer.append(len(temp))  # 완성된 그룹의 크기 저장
+            
+    # 카드 전체가 하나의 그룹일 경우
+    if answer[0] == len(cards):
+        return 0
+    else:
+        # 내림차순 정렬
+        answer.sort(reverse=True)
+    
+    # 가장 큰 두 그룹 곱하기
+    return answer[0] * answer[1]
