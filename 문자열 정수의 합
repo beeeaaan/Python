@@ -1,0 +1,5 @@
+from functools import reduce
+
+def solution(num_str):
+    # reduce() : 누적 합 반환
+    return reduce(lambda acc, cur: int(acc) + int(cur), num_str, 0)
