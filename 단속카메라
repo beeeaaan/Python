@@ -1,0 +1,17 @@
+def solution(routes):
+    newRoutes = len(routes)    
+    # 오름차순 정렬(가장 빨리 끝나는 차량부터 카메라 설치하기 위해)
+    routes.sort(key=lambda x: x[1])   
+    camera = [routes[0][1]]
+    
+    # 두 번째 차량부터
+    for i in range(1, newRoutes):
+        # 설치한 카메라 포함되어 있을 경우
+        if routes[i][0] <= camera[-1] <= routes[i][1]:
+            continue
+        # 포함되지 않을 경우 카메라 설치
+        else:
+            camera.append(routes[i][1])
+    
+    # 설치한 카메라 개수 반환
+    return len(camera)
