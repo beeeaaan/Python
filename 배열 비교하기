@@ -1,0 +1,22 @@
+def solution(arr1, arr2):
+    answer = 0
+    
+    # 배열 길이 비교
+    if len(arr1) > len(arr2):
+        answer = 1
+    elif len(arr1) < len(arr2):
+        answer = -1
+    # 길이 같을 경우 합 비교
+    else:
+        arr1Sum = sum(arr1)
+        arr2Sum = sum(arr2)
+        
+        if arr1Sum > arr2Sum:
+            answer = 1
+        elif arr1Sum < arr2Sum:
+            answer = -1
+        # 길이, 합 같을 경우 같은 배열
+        else:
+            answer = 0
+            
+    return answer
