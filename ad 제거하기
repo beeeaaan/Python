@@ -1,0 +1,9 @@
+def solution(strArr):
+    answer = []
+    
+    for i in strArr:
+        # ad 문자열 포함하지 않을 경우 추가
+        if "ad" not in i:
+            answer.append(i)
+            
+    return answer
