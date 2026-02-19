@@ -1,0 +1,17 @@
+def solution(n, s):
+    answer = []
+    
+    # 자연수 개수가 원소의 합보다 큰 경우
+    if (n > s):
+        answer = [-1]
+    # 자연수 개수가 원소의 합보다 작거나 같은 경우
+    else:
+        for _ in range(n):
+            answer.append(s // n)
+        for i in range(s % n):
+            answer[i] += 1
+         
+        # 오름차순 정렬
+        answer.sort()
+        
+    return answer
