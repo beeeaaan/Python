@@ -1,0 +1,3 @@
+def solution(arr):
+    # arr 각 원소 i를 i번씩 반복
+    return [i for i in arr for j in range(i)]
