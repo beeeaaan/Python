@@ -1,0 +1,8 @@
+def solution(myString):
+    answer = []
+
+    # "x" 기준으로 나누기
+    for string in myString.split("x"):
+        answer.append(len(string))
+
+    return answer
