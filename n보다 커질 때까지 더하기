@@ -1,0 +1,9 @@
+def solution(numbers, n):
+    answer = 0
+    
+    for i in numbers:
+        answer += i
+        
+        # 합이 n보다 클 경우 
+        if answer > n:
+            return answer
