@@ -1,0 +1,3 @@
+def solution(rny_string):
+    # 'm' -> 'rn'
+    return rny_string.replace('m', 'rn')
