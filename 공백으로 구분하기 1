@@ -1,0 +1,5 @@
+def solution(my_string):
+    # split() : 문자열 나누기
+    answer = my_string.split()
+    
+    return answer
