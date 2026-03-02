@@ -1,0 +1,32 @@
+from collections import defaultdict
+
+def solution(genres, plays):
+    answer = []
+    
+    # 장르별로 노래번호, 재생수 저장
+    genre_dict = defaultdict(list)
+    for idx in range(len(genres)):
+        genre_dict[genres[idx]].append([idx, plays[idx]])
+    
+    # 장르별 총 재생수 계산 후 정렬
+    genre_total = []
+    for genre, song_list in genre_dict.items():
+        total_play = sum(play for _, play in song_list)
+        genre_total.append([total_play, genre])
+    
+    # 총 재생수 기준 오름차순 정렬 (pop()으로 큰 값부터 사용)
+    genre_total.sort()
+    
+    # 재생수가 많은 장르부터 최대 2곡씩 선택
+    while genre_total:
+        genre = genre_total.pop()[1]
+        songs = genre_dict[genre]
+        
+        # 재생수 기준 내림차순 정렬
+        songs.sort(key=lambda x: x[1], reverse=True)
+        
+        # 최대 2곡 선택
+        for song in songs[:2]:
+            answer.append(song[0])
+    
+    return answer
