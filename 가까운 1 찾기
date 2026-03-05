@@ -1,0 +1,13 @@
+def solution(arr, idx):
+    answer = -1
+    
+    for i in range(len(arr)) :
+        # 1보다 큰 경우
+        if i < idx :
+            continue
+        # 1인 경우
+        elif arr[i] == 1 :
+            answer = i
+            break
+            
+    return answer
