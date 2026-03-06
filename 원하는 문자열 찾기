@@ -1,0 +1,6 @@
+def solution(myString, pat):
+    # 대문자 변환 후 pat 존재할 경우 1 아닐 경우 0
+    if pat.upper() in myString.upper():
+        return 1
+    else:
+        return 0
