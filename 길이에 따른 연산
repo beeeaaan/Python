@@ -1,0 +1,12 @@
+def solution(num_list):
+    answer = 1
+    
+    for i in range(len(num_list)):
+        # 11이상일 경우 모두 더하기
+        if len(num_list) >= 11:
+            answer = sum(num_list)
+        # 10 이하일 경우 모두 곱하기
+        else:
+            answer *= num_list[i]
+            
+    return answer
