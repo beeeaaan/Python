@@ -1,0 +1,8 @@
+def solution(my_strings, parts):
+    answer = ''
+    
+    for s, (start, end) in zip(my_strings, parts):
+        # 끝 인덱스 미포함이므로 +1
+        answer += s[start:end+1]
+        
+    return answer
