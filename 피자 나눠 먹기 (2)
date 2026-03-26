@@ -1,0 +1,5 @@
+def solution(n):
+    for i in range(1, 6 * n + 1):
+        # 모두 같은 수 먹으려면 나머지 없어야 함
+        if (6 * i) % n == 0:
+            return i
