@@ -1,0 +1,12 @@
+def solution(numbers, direction):
+    answer = [0] * len(numbers)
+    
+    for i in range(len(numbers)):
+        # 'right'일 경우
+        if direction == 'right':
+            answer[(i+1) % len(numbers)] = numbers[i]
+        # 'left'일 경우
+        else:
+            answer[(i-1) % len(numbers)] = numbers[i]
+            
+    return answer
