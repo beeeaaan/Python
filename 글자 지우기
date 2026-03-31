@@ -1,0 +1,9 @@
+def solution(my_string, indices):
+    # 뒤에서부터 지우기(인덱스 밀림 방지)
+    indices.sort(reverse=True)
+
+    for i in indices:
+        # 해당 인덱스 문자 제거
+        my_string = my_string[:i] + my_string[i + 1:]
+
+    return my_string
