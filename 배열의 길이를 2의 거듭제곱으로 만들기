@@ -1,0 +1,12 @@
+def solution(arr):
+    for i in range(11):
+        # arr 길이 2의 정수 거듭제곱일 경우 
+        if 2 ** i == len(arr):
+            return arr
+
+        # arr 길이 2의 정수 거듭제곱 아닐 경우 0 추가
+        elif 2 ** i > len(arr):
+            app = 2 ** i - len(arr)
+            for j in range(app):
+                arr.append(0)
+            return arr
