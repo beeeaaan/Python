@@ -1,0 +1,9 @@
+def solution(myString: str, pat: str) -> int:
+    answer = 0
+    
+    for x in range(len(myString) - len(pat) + 1):
+        # pat 등장 횟수
+        if myString[x:x+len(pat)] == pat:
+            answer += 1
+    
+    return answer
