@@ -1,0 +1,5 @@
+def solution(myString, pat):
+    # rfind() : 뒤에서부터 해당하는 문자열 찾기
+    answer = myString.rfind(pat)
+    
+    return myString[:answer + len(pat)]
