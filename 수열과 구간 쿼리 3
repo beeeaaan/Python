@@ -1,0 +1,6 @@
+def solution(arr, queries):
+    for a, b in queries:
+        # arr의 a번 인덱스와 b번 인덱스 값 서로 교환
+        arr[a], arr[b] = arr[b], arr[a]
+        
+    return arr
