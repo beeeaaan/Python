@@ -1,0 +1,10 @@
+def solution(emergency):
+    answer = []   
+    # 응급도 내림차순 정렬
+    temp = sorted(emergency, reverse=True)
+    
+    for i in emergency:
+        # 해당 값 인덱스 +1(순위 변환)
+        answer.append(temp.index(i) + 1)
+
+    return answer
