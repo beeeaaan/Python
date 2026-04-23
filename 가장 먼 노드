@@ -1,0 +1,32 @@
+from collections import deque
+
+def solution(n, edge):
+    # 인접 리스트로 그래프 초기화
+    graph = [[] for _ in range(n + 1)]
+    
+    for a, b in edge:
+        graph[a].append(b)
+        graph[b].append(a)
+    
+    # 방문 여부 및 거리 저장할 리스트 (미방문 : -1)
+    distance = [-1] * (n + 1)
+    distance[1] = 0  # 시작 노드 거리
+   
+    queue = deque([1])
+    
+    # BFS 탐색
+    while queue:
+        current = queue.popleft()
+        
+        for neighbor in graph[current]:
+            # 아직 방문하지 않은 노드일 경우
+            if distance[neighbor] == -1:
+                # 현재 노드 거리 + 1을 저장
+                distance[neighbor] = distance[current] + 1
+                queue.append(neighbor)
+    
+    # 가장 먼 거리 찾기
+    max_dist = max(distance)
+    
+    # 최대 거리와 일치하는 노드 개수 반환
+    return distance.count(max_dist)
