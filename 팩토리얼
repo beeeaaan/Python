@@ -1,0 +1,10 @@
+def solution(n):
+    x = 1
+    factorial = 1
+    
+    # 다음 팩토리얼이 n보다 작거나 같을 때까지 진행
+    while factorial * (x + 1) <= n:
+        x += 1
+        factorial *= x
+        
+    return x
