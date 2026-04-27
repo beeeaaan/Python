@@ -1,0 +1,8 @@
+import re
+
+def solution(my_string):
+    # findall() : 조건에 맞는 모든 부분 리스트로 변환
+    numbers = re.findall(r'\d+', my_string)
+    
+    # 문자열을 정수 변환 후 모두 더하기
+    return sum(int(num) for num in numbers)
