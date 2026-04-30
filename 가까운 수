@@ -1,0 +1,6 @@
+def solution(array, n):
+    # 작은 수 우선순위 위한 정렬
+    array.sort()
+    
+    # 차이 최솟값 찾기
+    return min(array, key=lambda x: abs(x - n))
