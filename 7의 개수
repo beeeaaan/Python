@@ -1,0 +1,5 @@
+def solution(array):
+    # 하나의 문자열로 합친 후 7의 개수 세기
+    answer = str(array).count('7')
+    
+    return answer
