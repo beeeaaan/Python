@@ -1,0 +1,9 @@
+def solution(arr):
+    indices = [i for i, x in enumerate(arr) if x == 2]
+    
+    # 2가 없는 경우
+    if not indices:
+        return [-1]
+    
+    # 1번부터 6번 인덱스까지 부분 배열 반환
+    return arr[indices[0] : indices[-1] + 1]
