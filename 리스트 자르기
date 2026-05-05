@@ -1,0 +1,21 @@
+def solution(n, slicer, num_list):
+    a, b, c = slicer
+    
+    # n = 1일 경우
+    if n == 1:
+        #  0번 인덱스부터 b번 인덱스까지
+        return num_list[:b+1]
+    
+    # n = 2일 경우
+    elif n == 2:
+        # a번 인덱스부터 마지막 인덱스까지
+        return num_list[a:]
+    # n = 3일 경우
+    elif n == 3:
+        # a번 인덱스부터 b번 인덱스까지
+        return num_list[a:b+1]
+    
+    # n = 4일 경우
+    elif n == 4:
+        # a번 인덱스부터 b번 인덱스까지 c 간격으로
+        return num_list[a:b+1:c]
