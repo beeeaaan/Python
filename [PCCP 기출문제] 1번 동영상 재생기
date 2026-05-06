@@ -1,0 +1,39 @@
+# 초 단위 정수로 변환
+def to_seconds(time_str):
+    m, s = map(int, time_str.split(":"))
+    return m * 60 + s
+
+# mm:ss 형식 문자열로 변환
+def to_string(seconds):
+    m = seconds // 60
+    s = seconds % 60
+    return f"{m:02d}:{s:02d}"
+
+def solution(video_len, pos, op_start, op_end, commands):
+    # 모든 시간을 초 단위로 변환
+    v_len = to_seconds(video_len)
+    curr = to_seconds(pos)
+    s_start = to_seconds(op_start)
+    s_end = to_seconds(op_end)
+
+    # 기능 구현 (반복되는 오프닝 건너뛰기 로직을 함수화하거나 체크)
+    def skip_opening(t):
+        if s_start <= t <= s_end:
+            return s_end
+        return t
+
+    # 시작 직후 오프닝 위치라면 즉시 이동
+    curr = skip_opening(curr)
+
+    for cmd in commands:
+        # 10초 전으로 이동(0초 미만 방지)
+        if cmd == "prev":
+            curr = max(0, curr - 10)
+        # 10초 후로 이동(동영상 길이 초과 방지)
+        elif cmd == "next":
+            curr = min(v_len, curr + 10)
+        
+        # 이동 후 오프닝 구간 체크
+        curr = skip_opening(curr)
+
+    return to_string(curr)
