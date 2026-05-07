@@ -1,0 +1,34 @@
+def solution(picks, minerals):
+    answer = 0
+    max_minerals = sum(picks) * 5  # 곡괭이 개수 * 5 = 캘 수 있는 최대 광물 수
+    minerals = minerals[:max_minerals]
+    groups = []  # 광물 덩어리(5개씩)
+    
+    for i in range(0, len(minerals), 5):
+        group = minerals[i:i+5]
+        # 각 덩어리별 [다이아 개수, 철 개수, 돌 개수] 카운트
+        groups.append([group.count("diamond"), group.count("iron"), group.count("stone")])
+        
+    # 다이아몬드 -> 철 -> 돌 순서로 많은 덩어리부터 정렬
+    groups.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
+    
+    # 곡괭이 투입 (다이아 -> 철 -> 돌 순서)
+    for g in groups:
+        d, i, s = g
+        
+        # 다이아몬드 곡괭이 사용
+        if picks[0] > 0:
+            answer += (d + i + s)
+            picks[0] -= 1
+        # 철 곡괭이 사용
+        elif picks[1] > 0:
+            answer += (d * 5 + i + s)
+            picks[1] -= 1
+        # 돌 곡괭이 사용
+        elif picks[2] > 0:
+            answer += (d * 25 + i * 5 + s)
+            picks[2] -= 1
+        else:
+            break
+            
+    return answer
