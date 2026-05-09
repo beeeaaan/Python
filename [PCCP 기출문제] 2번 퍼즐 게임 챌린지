@@ -1,0 +1,35 @@
+def solution(diffs, times, limit):
+    # 이분 탐색을 위한 시작점과 끝점 설정
+    left = 1
+    right = max(diffs)
+    answer = right
+
+    while left <= right:
+        mid = (left + right) // 2  # 현재 가정하는 숙련도 (level)
+        total_time = 0
+        
+        # 소요 시간 계산
+        for i in range(len(diffs)):
+            diff = diffs[i]
+            time_cur = times[i]
+            time_prev = times[i-1] if i > 0 else 0
+            
+            # 숙련도가 충분할 경우 자기 시간만큼만 소요
+            if diff <= mid:
+                total_time += time_cur
+            # 숙련도가 부족할 경우 (난이도 - 숙련도)만큼 이전 문제와 현제 문제를 반복
+            else:
+                total_time += (diff - mid) * (time_cur + time_prev) + time_cur
+            
+            # 계산 중간에 이미 limit을 넘어설 경우 효율성 위해 중단
+            if total_time > limit:
+                break
+        
+        # 총 소요 시간 따른 범위 조정
+        if total_time <= limit:
+            answer = mid  # 정답 후보 저장
+            right = mid - 1
+        else:
+            left = mid + 1
+            
+    return answer
