@@ -1,0 +1,8 @@
+# 입력을 공백 기준으로 나누기
+a, n = input().strip().split(' ')
+
+# 정수 변환
+n = int(n)
+
+# 문자열 반복
+print(a * n)
