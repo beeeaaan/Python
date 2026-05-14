@@ -1,0 +1,54 @@
+from collections import deque
+
+def solution(storage, requests):
+    R, C = len(storage), len(storage[0])
+    grid = [list(row) for row in storage]
+    remain_count = R * C
+
+    for req in requests:
+        target = req[0]
+        
+        # 크레인(문자 2개) : 전체 격자에서 해당 문자 즉시 제거
+        if len(req) == 2:
+            for r in range(R):
+                for c in range(C):
+                    if grid[r][c] == target:
+                        grid[r][c] = '.'
+                        remain_count -= 1
+            continue
+
+        # 2. 지게차(문자 1개) : 외부와 연결된 타겟만 제거
+        to_remove = set()
+        # (0,0)을 외부 패딩 영역으로 잡고 BFS 탐색 (상하좌우 1칸씩 여유 공간 설정)
+        visited = [[False] * (C + 2) for _ in range(R + 2)]
+        q = deque([(0, 0)])
+        visited[0][0] = True
+        
+        while q:
+            r, c = q.popleft()
+            
+            for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                nr, nc = r + dr, c + dc
+                
+                if 0 <= nr < R + 2 and 0 <= nc < C + 2 and not visited[nr][nc]:
+                    gr, gc = nr - 1, nc - 1 # 실제 grid 좌표로 변환
+                    
+                    # 격자 내부인 경우
+                    if 0 <= gr < R and 0 <= gc < C:
+                        if grid[gr][gc] == target:
+                            to_remove.add((gr, gc))
+                            visited[nr][nc] = True # 방문 표시만 하고 큐에 넣지 않음(지게차 막힘)
+                        elif grid[gr][gc] == '.':
+                            visited[nr][nc] = True
+                            q.append((nr, nc)) # 빈 공간은 통로이므로 계속 탐색
+                    # 격자 외부 패딩인 경우
+                    else:
+                        visited[nr][nc] = True
+                        q.append((nr, nc))
+        
+        # 지게차로 찾은 타겟들 제거
+        for rr, rc in to_remove:
+            grid[rr][rc] = '.'
+            remain_count -= 1
+
+    return remain_count
