@@ -1,0 +1,11 @@
+import math
+
+def solution(w, h):
+    total_squares = w * h
+    
+    # 대각선 지나가는 사각형 개수 구하기
+    # 공식 : 가로 + 세로 - 최대공약수(GCD)
+    unusable_squares = w + h - math.gcd(w, h)
+    
+    # 전체 사각형 개수 - 사용할 수 없는 사각형 개수
+    return total_squares - unusable_squares
