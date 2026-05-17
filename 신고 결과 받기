@@ -1,0 +1,21 @@
+def solution(id_list, report, k):
+    report = list(set(report))  # 한 유저가 같은 유저 여러 번 신고한 경우 1회 처리(중복 제거)    
+    report_hash = {user: [] for user in id_list}  # 누구 신고했는지
+    reported_count = {user: 0 for user in id_list}  # 몇 번 신고당했는지
+    
+    for r in report:
+        reporter, reported = r.split()  # 신고자, 피신고자 분리(공백 기준)
+        report_hash[reporter].append(reported)  # 내가 누구 신고했는지
+        reported_count[reported] += 1  # 피신고자 신고 당한 횟수 +1
+        
+    # 정지 기준(k번) 이상인 유저 찾아서 정지 목록(banned) 생성
+    banned = [user for user, count in reported_count.items() if count >= k]    
+    # id_list 순서대로 각 유저가 받은 결과 메일 개수 계산
+    answer = []
+
+    for user in id_list:
+        # 내가 신고한 유저들(report_hash[user]) 중 정지 목록(banned)에 포함된 유저 수 카운트
+        mail_count = len([r for r in report_hash[user] if r in banned])
+        answer.append(mail_count)
+        
+    return answer
