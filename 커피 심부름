@@ -1,0 +1,12 @@
+def solution(order):
+    answer = 0
+    
+    for menu in order:
+        # 메뉴 이름에 "cafelatte"가 포함될 경우 5.000원 추가
+        if "cafelatte" in menu:
+            answer += 5000
+        # 포함되지 않을 경우("americano" 또는 "anything") 4500원 추가
+        else:
+            answer += 4500
+            
+    return answer
