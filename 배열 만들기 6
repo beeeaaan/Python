@@ -1,0 +1,13 @@
+def solution(arr):
+    stk = []
+    
+    for num in arr:
+        # stk의 마지막 원소가 현재 값과 같을 경우 짝 맞춰 제거
+        if stk and stk[-1] == num:
+            stk.pop()
+        # stk가 비었거나, 마지막 원소가 현재 값과 다를 경우 추가
+        else:
+            stk.append(num)
+            
+    # stk가 비어있을 경우 [-1] 반환 혹은 stk 반환
+    return stk if stk else [-1]
