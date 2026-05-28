@@ -1,0 +1,30 @@
+import math
+from functools import reduce
+
+# 두 수의 최소공배수(LCM) 구하는 함수
+def lcm(a, b):
+    return (a * b) // math.gcd(a, b)
+
+def solution(signals):
+    cycles = [g + y + r for g, y, r in signals]  # 전체 주기(G + Y + R)    
+    max_time = reduce(lcm, cycles)
+    
+    for t in range(1, max_time + 1):
+        all_yellow = True
+        
+        for i, (g, y, r) in enumerate(signals):
+            c = cycles[i]
+            current_phase = (t - 1) % c  # 상대적 경과 시간(0 ~ c-1)
+            
+            # 상대 시간이 초록불 지속시간(g) 이상 및 초록+노랑 지속시간(g + y) 미만일 경우 노란불
+            if not (g <= current_phase < g + y):
+                all_yellow = False
+                # 하나라도 노란불 아닐 경우 탈락
+                break
+        
+        # 모든 신호등이 노란불인 경우의 해당 시각 반환
+        if all_yellow:
+            return t
+            
+    # 한 번도 동시에 노란불이 안 켜졌을 경우 -1 반환
+    return -1
