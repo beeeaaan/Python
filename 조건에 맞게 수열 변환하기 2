@@ -1,0 +1,28 @@
+def solution(arr):
+    answer = 0
+    
+    while True:
+        prev_arr = arr.copy()  # 비교용        
+        next_arr = []
+        
+        for num in arr:
+            # 50 이상인 짝수는 2로 나누기
+            if num >= 50 and num % 2 == 0:
+                next_arr.append(num // 2)
+            # 50 미만의 홀수는 2 곱하고 1 더하기
+            elif num < 50 and num % 2 != 0:
+                next_arr.append(num * 2 + 1) 
+            # 전부 아닐 경우 그대로 유지
+            else:
+                next_arr.append(num)    
+                
+        arr = next_arr
+        
+        # 이전 배열과 현재 배열 같을 경우 반복 멈추기
+        if prev_arr == arr:
+            break
+          
+        # 값 변하면 반복 횟수 + 1
+        answer += 1
+        
+    return answer
