@@ -1,0 +1,11 @@
+def solution(str_list):
+    for i, char in enumerate(str_list):
+        # "l" 먼저 나올 경우 "l" 왼쪽 문자열들 반환
+        if char == "l":
+            return str_list[:i]
+        # "r" 먼저 나올 경우 "r" 오른쪽 문자열들 반환
+        elif char == "r":
+            return str_list[i+1:]
+            
+    # "l", "r" 모두 없을 경우 빈 리스트 반환
+    return []
