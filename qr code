@@ -1,0 +1,3 @@
+def solution(q, r, code):
+    # index % q == r의 위치 문자들만 추출
+    return code[r::q]
