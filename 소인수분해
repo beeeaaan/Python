@@ -1,0 +1,18 @@
+def solution(n):
+    answer = []
+    d = 2
+    
+    # d의 제곱이 n보다 작거나 같을 때까지 반복
+    while d * d <= n:
+        if n % d == 0:
+            answer.append(d)  # 나누어 떨어지면 소인수로 추가
+            # 나누어 떨어지지 않을 때까지 나누기(중복 제거)
+            while n % d == 0:
+                n //= d
+        d += 1
+    
+    # n이 1보다 클 경우 소수
+    if n > 1:
+        answer.append(n)
+        
+    return answer
