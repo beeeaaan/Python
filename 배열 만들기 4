@@ -1,0 +1,18 @@
+def solution(arr):
+    st = []
+    i = 0
+    
+    while i < len(arr):
+        # st가 비어있을 경우 현재 arr[i] 추가 및 i + 1
+        if not st:
+            st.append(arr[i])
+            i += 1
+        # st에 원소가 있고, 마지막 원소가 arr[i]보다 작을 경우 arr[i] 추가 및 i + 1
+        elif st[-1] < arr[i]:
+            st.append(arr[i])
+            i += 1
+        # st에 원소가 있고, 마지막 원소가 arr[i]보다 크거나 같을 경우 st의 마지막 원소 제거
+        else:
+            st.pop()
+            
+    return st
