@@ -1,0 +1,41 @@
+def solution(bandage, health, attacks):
+    cast_time, heal_per_sec, bonus_heal = bandage 
+    max_health = health    
+    attack_dict = {time: damage for time, damage in attacks}    
+    last_attack_time = attacks[-1][0]    
+    current_health = health
+    success_streak = 0
+    
+    # 1초부터 마지막 공격 시간까지 흐름 시뮬레이션
+    for current_time in range(1, last_attack_time + 1):
+        
+        # 현재 시간에 몬스터 공격이 있는 경우
+        if current_time in attack_dict:
+            # 피해량만큼 체력 감소
+            current_health -= attack_dict[current_time]
+            # 연속 성공 시간 초기화
+            success_streak = 0
+            
+            # 공격을 받아 체력이 0 이하가 될 경우 캐릭터 사망(-1 반환)
+            if current_health <= 0:
+                return -1
+                
+        # 공격이 없는 평온한 시간인 경우(붕대 감기 지속)
+        else:
+            # 연속 성공 시간 1초 증가
+            success_streak += 1
+            # 초당 회복량만큼 체력 회복
+            current_health += heal_per_sec
+            
+            # 시전 시간만큼 연속 성공한 경우 추가 회복량 보너스
+            if success_streak == cast_time:
+                current_health += bonus_heal
+                # 보너스 받았으므로 연속 성공 시간 초기화
+                success_streak = 0 
+                
+            # 체력이 최대 체력을 초과하지 않도록 보정
+            if current_health > max_health:
+                current_health = max_health
+                
+    # 모든 공격 끝난 후 살아 남은 경우 남은 체력 반환
+    return current_health
