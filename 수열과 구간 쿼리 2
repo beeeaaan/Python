@@ -1,0 +1,11 @@
+def solution(arr, queries):
+    answer = []
+    
+    for s, e, k in queries:
+        # 리스트 생성(arr[s:e+1]구간에서 kq보다 큰 값들)
+        sub_list = [num for num in arr[s:e+1] if num > k]
+        
+        # 리스트가 비어있지 않으면 최솟값, 비어있으면 -1을 추가
+        answer.append(min(sub_list) if sub_list else -1)
+        
+    return answer
