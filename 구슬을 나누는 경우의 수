@@ -1,0 +1,5 @@
+import math
+
+def solution(balls, share):
+    # balls개 중 share개를 고르는 조합의 수 반환
+    return math.comb(balls, share)
