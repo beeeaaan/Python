@@ -1,0 +1,22 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> sides) {
+    int answer = 0;
+    int big = max(sides[0], sides[1]);
+    int small = min(sides[0], sides[1]);
+    
+    // 기존의 큰 변이 가장 긴 변인 경우
+    for (int x = big - small + 1; x <= big; x++) {
+        answer++;
+    }
+    
+    // 새로 올 변이 가장 긴 변인 경우
+    for (int x = big + 1; x < big + small; x++) {
+        answer++;
+    }
+    
+    return answer;
+}
