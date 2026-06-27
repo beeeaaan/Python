@@ -1,0 +1,10 @@
+def solution(numbers):
+    # 영단어 인덱스와 매칭되는 숫자
+    words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    
+    # 각 단어 순회하며 해당 숫자 문자열로 치환
+    for i, word in enumerate(words):
+        numbers = numbers.replace(word, str(i))
+        
+    # 최종 결과 정수형으로 변환
+    return int(numbers)
