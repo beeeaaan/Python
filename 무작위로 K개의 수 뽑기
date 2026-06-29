@@ -1,0 +1,15 @@
+def solution(arr, k):
+    answer = []
+    
+    for num in arr:
+        if num not in answer:
+            answer.append(num)
+        # k개 모두 채운 경우 반복문 종료
+        if len(answer) == k:
+            break
+            
+    # arr 다 돌았는데도 answer의 길이가 k보다 작은 경우 부족한 만큼 -1 채우기
+    while len(answer) < k:
+        answer.append(-1)
+        
+    return answer
