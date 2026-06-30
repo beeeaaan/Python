@@ -1,0 +1,15 @@
+def solution(picture, k):
+    answer = []
+
+    # 그림의 각 행에 대해 반복
+    for row in picture:
+        # 가로 확대 : 각 문자 k번 반복
+        enlarged = ""
+        for ch in row:
+            enlarged += ch * k
+
+        # 세로 확대 : 완성된 행 k번 추가
+        for _ in range(k):
+            answer.append(enlarged)
+
+    return answer
