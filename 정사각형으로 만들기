@@ -1,0 +1,18 @@
+def solution(arr):
+    row_count = len(arr)  # 행의 개수
+    col_count = len(arr[0])  # 열의 개수
+    
+    # 행의 수가 더 많은 경우 각 행의 끝에 0 추가하여 열의 수 맞추기
+    if row_count > col_count:
+        for row in arr:
+            # 부족한 만큼 [0]을 곱해서 더해주기
+            row.extend([0] * (row_count - col_count))
+            
+    # 열의 수가 더 많은 경우 새로운 0으로 이루어진 행을 아래에 추가하기
+    elif col_count > row_count:
+        # 추가해야 할 0의 개수는 현재 열의 개수와 동일
+        for _ in range(col_count - row_count):
+            arr.append([0] * col_count)
+            
+    # 정사각형 모양 완성된 배열 반환
+    return arr
