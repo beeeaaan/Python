@@ -1,0 +1,6 @@
+# 공백 기준 두 정수 입력받아 a, b 저장
+a, b = map(int, input().strip().split(' '))
+
+# 원하는 형식 출력(f-string 사용)
+print(f"a = {a}")
+print(f"b = {b}")
