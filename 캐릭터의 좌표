@@ -1,0 +1,18 @@
+def solution(keyinput, board):
+    x, y = 0, 0
+    
+    # x, y축으로 이동 가능한 최대 범위 (중앙 0 기준)
+    max_x = board[0] // 2
+    max_y = board[1] // 2
+    
+    # 방향별 이동량 정의
+    move = {"up": (0, 1), "down": (0, -1), "left": (-1, 0), "right": (1, 0)}
+    
+    for key in keyinput:
+        dx, dy = move[key]
+        
+        # 이동 후 경계값(-max ~ +max) 벗어나지 않도록 제한
+        x = min(max_x, max(-max_x, x + dx))
+        y = min(max_y, max(-max_y, y + dy))
+        
+    return [x, y]
