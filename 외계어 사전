@@ -1,0 +1,10 @@
+def solution(spell, dic):
+    # 정렬로 문자열 하나로 결합
+    target = "".join(sorted(spell))
+    
+    for word in dic:
+        # target과 일치할 경우 1 반환
+        if "".join(sorted(word)) == target:
+            return 1
+            
+    return 2
