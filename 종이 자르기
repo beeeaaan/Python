@@ -1,0 +1,3 @@
+def solution(M, N):
+    # 최소 가위질 횟수 = 총 격자 수 - 1
+    return (M * N) - 1
