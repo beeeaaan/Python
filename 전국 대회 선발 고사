@@ -1,0 +1,13 @@
+def solution(rank, attendance):
+    # 참석 가능한 학생의 등수, 번호 추출
+    candidates = [(r, i) for i, r in enumerate(rank) if attendance[i]]
+    
+    # 등수 기준 오름차순 정렬
+    candidates.sort()
+    
+    # 상위 3명 번호
+    a = candidates[0][1]
+    b = candidates[1][1]
+    c = candidates[2][1]
+    
+    return 10000 * a + 100 * b + c
