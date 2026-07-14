@@ -1,0 +1,4 @@
+str = input()
+
+# swapcase()  : 대소문자 서로 바꾸기
+print(str.swapcase())
