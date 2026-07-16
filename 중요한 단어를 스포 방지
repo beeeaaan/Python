@@ -1,0 +1,36 @@
+def solution(message, spoiler_ranges):
+    n = len(message)
+    # 문자별 스포일러 여부 기록할 마스크 생성
+    spoiler_mask = [False] * n
+    
+    for start, end in spoiler_ranges:
+        for i in range(start, end + 1):
+            spoiler_mask[i] = True
+            
+    spoiler_set = set()  # 스포일러 영역에 겹친 단어
+    normal_set = set()   # 스포일러 영역에 전혀 겹치지 않은 단어
+    
+    # 메시지 내 각 단어 위치(인덱스) 추적하며 분류
+    words = message.split(' ')
+    current_idx = 0
+    
+    for word in words:
+        if not word:
+            current_idx += 1
+            continue
+            
+        # 단어 시작점부터 끝점까지 중 스포일러가 하나라도 있는지 검사
+        word_len = len(word)
+        is_spoiled = any(spoiler_mask[i] for i in range(current_idx, current_idx + word_len))
+        
+        # 스포일러 여부에 따라 해당 단어를 집합에 추가
+        if is_spoiled:
+            spoiler_set.add(word)
+        else:
+            normal_set.add(word)
+            
+        # 다음 단어로 인덱스 이동(단어 길이 + 공백 1칸)
+        current_idx += word_len + 1
+
+    # 스포일러 단어 중 일반 영역에 등장한 적 없는 단어 개수 반환
+    return len(spoiler_set - normal_set)
