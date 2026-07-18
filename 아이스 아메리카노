@@ -1,0 +1,12 @@
+def solution(money):
+    # 아메리카노 한 잔 가격
+    price = 5500
+    
+    # 마실 수 있는 아메리카노 잔 수
+    count = money // price
+    
+    # 남는 돈
+    change = money % price
+    
+    # [잔 수, 남는 돈] 형태로 반환
+    return [count, change]
