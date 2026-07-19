@@ -1,0 +1,26 @@
+from itertools import permutations
+
+def check(user_id, banned_id):
+    # 불량 사용자 아이디 목록과 매칭되는지 확인
+    for i in range(len(banned_id)):
+        if len(user_id[i]) != len(banned_id[i]):
+            return False
+        
+        for j in range(len(user_id[i])):
+            if banned_id[i][j] == '*':
+                continue
+            if banned_id[i][j] != user_id[i][j]:
+                return False
+    return True
+
+def solution(user_id, banned_id):
+    answer = set()
+    
+    # user_id 중 banned_id 개수만큼 순서를 고려하여 뽑기(순열)
+    for p in permutations(user_id, len(banned_id)):
+        # 만약 조건에 맞는 조합일 경우
+        if check(p, banned_id):
+            # 순서 달라도 구성원이 같을 경우 같은 조합으로 처리하기 위해 정렬 후 set에 추가
+            answer.add(tuple(sorted(p)))
+            
+    return len(answer)
