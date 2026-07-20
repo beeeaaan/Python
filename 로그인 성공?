@@ -1,0 +1,16 @@
+def solution(id_pw, db):
+    user_id, user_pw = id_pw    
+    # 리스트 -> 딕셔너리 변환
+    db_dict = dict(db)
+    
+    # 아이디가 db에 있는 경우
+    if user_id in db_dict:
+        # 비밀번호까지 일치하면 로그인 성공
+        if db_dict[user_id] == user_pw:
+            return "login"
+        # 아이디는 맞지만 비밀번호가 틀린 경우
+        else:
+            return "wrong pw"
+    
+    # 아이디가 db에 없는 경우
+    return "fail"
